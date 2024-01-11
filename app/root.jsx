@@ -17,6 +17,7 @@ import resetStyles from './styles/reset.css';
 import appStyles from './styles/app.css';
 import headerStyles from './styles/header.css';
 import aboutStyles from './styles/about.css';
+import astroRewardsStyles from './styles/astrorewards.css';
 import {Layout} from '~/components/Layout';
 
 /**
@@ -43,6 +44,7 @@ export function links() {
     {rel: 'stylesheet', href: appStyles},
     {rel: 'stylesheet', href: headerStyles},
     {rel: 'stylesheet', href: aboutStyles},
+    {rel: 'stylesheet', href: astroRewardsStyles},
     {
       rel: 'preconnect',
       href: 'https://cdn.shopify.com',

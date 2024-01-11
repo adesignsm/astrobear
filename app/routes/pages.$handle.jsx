@@ -32,6 +32,7 @@ export async function loader({params, context}) {
 export default function Page() {
   /** @type {LoaderReturnData} */
   const {page} = useLoaderData();
+  console.log(page);
 
   return (
     <div className="page">
