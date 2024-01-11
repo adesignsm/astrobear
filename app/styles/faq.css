@@ -1,0 +1,43 @@
+#faq-wrapper {
+    display: flex;
+    max-width: 60vw;
+    width: 60vw;
+    margin: 0 auto;
+    padding: 0 10rem;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 10rem;
+
+    .faq {
+        width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 2rem;
+        color: #fff;
+
+        #faq-page-title {
+            font-size: 4em;
+            text-align: center;
+        }
+
+        .title {
+            text-transform: uppercase;
+            color: #e2f1c3;
+            font-size: 1.8em;
+        }
+    
+        summary {
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        p {
+            width: 100%;
+            border-bottom: 1px solid #fff;
+            padding-bottom: 1.2rem;
+            margin-bottom: 4rem;
+            margin-top: 1rem;
+            text-transform: none;
+            font-size: 1.3em;
+        }
+    }
+}
