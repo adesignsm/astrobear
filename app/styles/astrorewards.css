@@ -1,0 +1,94 @@
+.page .intro-text {
+    color: #fff;
+    margin-bottom: 4rem;
+    width: 70vw;
+    margin: 0 auto;
+
+    h1 {
+        text-transform: uppercase;
+        color: #fff;
+        font-size: 1.9rem;
+        font-weight: lighter;
+    }
+
+    .astro-rewards-image {
+        text-align: center !important;
+    }
+}
+
+.page .reward-program-text {
+    color: #fff;
+    margin-bottom: 4rem;
+    width: 70vw;
+    margin: 0 auto;
+
+    h2 {
+        font-size: 2rem;
+        font-weight: lighter;
+        line-height: 1.4;
+        margin-bottom: 1rem; 
+    }
+
+    ul {
+        list-style: disc;
+
+        li {
+            text-transform: none;
+            font-size: 1.2em;
+        }
+    }
+}
+
+.page .astro-referral-text {
+    color: #fff;
+    margin-bottom: 4rem;
+    width: 70vw;
+    margin: 0 auto;
+
+    h2 {
+        font-size: 2rem;
+        font-weight: lighter;
+        line-height: 1.4;
+        margin-bottom: 1rem; 
+    }
+
+    ul {
+        list-style: disc;
+
+        li {
+            text-transform: none;
+            font-size: 1.2em;
+        }
+    }
+}
+
+.page .astro-rewards-button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5rem;
+
+    button {
+        background-color: #000;
+        padding: 1rem 2rem;
+        border: 1px solid #fff;
+        border-radius: 15px;
+
+        a {
+            font-size: 1.5rem;
+            font-weight: lighter;
+            letter-spacing: 2px;
+            text-decoration: none;
+            color: #fff;
+            text-transform: uppercase;
+        }
+    }
+
+    button:hover {
+        background-color: #e2f1c3;
+
+        a {
+            color: #000;
+        }
+    }
+}
