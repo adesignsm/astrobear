@@ -1,0 +1,68 @@
+.page .about-top {
+    position: relative;
+    width: 70vw;
+    margin: 0 auto;
+
+    h3 {
+        color: #fff;
+        text-align: center;
+        font-size: 2rem;
+        text-transform: uppercase;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 100%;
+        padding: 0 1.6rem;
+        font-weight: lighter;
+    }
+
+    .about-image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.page .about-bottom {
+    width: 70vw;
+    margin: 0 auto;
+
+    p {
+        color: #fff;
+        text-transform: none !important;
+        text-align: center;
+        font-size: 1.1rem;
+    }
+}
+
+.page .button--large-dark.button-about {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+
+    button {
+        background-color: #000;
+        padding: 1rem 2rem;
+        border: 1px solid #fff;
+        border-radius: 15px;
+
+        a {
+            font-size: 1.5rem;
+            font-weight: lighter;
+            letter-spacing: 2px;
+            text-decoration: none;
+            color: #fff;
+            text-transform: uppercase;
+        }
+    }
+
+    button:hover {
+        background-color: #e2f1c3;
+
+        a {
+            color: #000;
+        }
+    }
+}
