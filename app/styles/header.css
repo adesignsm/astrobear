@@ -37,6 +37,7 @@
         border: 1px solid #fff;
         border-top: none;
         opacity: 0;
+        pointer-events: none;
 
         .header-menu-item {
             padding: 0.5rem;
@@ -53,6 +54,7 @@
     .dropdown-content.active {
         opacity: 1;
         margin-top: 2.5vh;
+        pointer-events: all;
         transition: opacity 0.5s ease-in-out, margin-top 0.5s ease-in-out;
     }
 }
