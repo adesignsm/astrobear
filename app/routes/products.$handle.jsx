@@ -1,6 +1,7 @@
-import {Suspense} from 'react';
+import {Suspense, useState} from 'react';
 import {defer, redirect} from '@shopify/remix-oxygen';
 import {Await, Link, useLoaderData} from '@remix-run/react';
+import {RecommendedProducts} from './_index';
 
 import {
   Image,
@@ -106,6 +107,7 @@ export default function Product() {
   /** @type {LoaderReturnData} */
   const {product, variants} = useLoaderData();
   const {selectedVariant} = product;
+  console.log(product)
   return (
     <div className="product">
       <ProductImage image={selectedVariant?.image} />
@@ -220,6 +222,20 @@ function ProductPrice({selectedVariant}) {
  * }}
  */
 function ProductForm({product, selectedVariant, variants}) {
+  const [quantity, setQuantity] = useState(1);
+
+  const handleInputChange = (e) => {
+    setQuantity(e.target.value)
+  }
+
+  const handleDecrease = () => {
+    setQuantity((prev) => (prev > 0 ? prev - 1 : 0));
+  }
+
+  const handleIncrease = () => {
+    setQuantity((prev) => prev + 1);
+  }
+  
   return (
     <div className="product-form">
       <VariantSelector
@@ -230,6 +246,11 @@ function ProductForm({product, selectedVariant, variants}) {
         {({option}) => <ProductOptions key={option.name} option={option} />}
       </VariantSelector>
       <br />
+      <div className='quantity-container'>
+        <button className='decrease' onClick={handleDecrease}> - </button>
+        <input minLength={0} maxLength={1} type='number' value={quantity} onChange={(e) => handleInputChange(e)}/>
+        <button className='increase' onClick={handleIncrease}> + </button>
+      </div>
       <AddToCartButton
         disabled={!selectedVariant || !selectedVariant.availableForSale}
         onClick={() => {
@@ -240,7 +261,7 @@ function ProductForm({product, selectedVariant, variants}) {
             ? [
                 {
                   merchandiseId: selectedVariant.id,
-                  quantity: 1,
+                  quantity: parseInt(quantity),
                 },
               ]
             : []
@@ -272,6 +293,8 @@ function ProductOptions({option}) {
               style={{
                 border: isActive ? '1px solid black' : '1px solid transparent',
                 opacity: isAvailable ? 1 : 0.3,
+                backgroundColor: isActive ? '#e2f1c3' : 'transparent',
+                color: isActive ? '#000' : '#fff',
               }}
             >
               {value}

@@ -193,7 +193,7 @@ function FeaturedCollection({collection}) {
  *   products: Promise<RecommendedProductsQuery>;
  * }}
  */
-function RecommendedProducts({products}) {
+export function RecommendedProducts({products}) {
   return (
     <div className="recommended-products">
       <Suspense fallback={<div>Loading...</div>}>
