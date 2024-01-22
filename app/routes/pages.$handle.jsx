@@ -1,5 +1,6 @@
 import {json} from '@shopify/remix-oxygen';
 import {useLoaderData} from '@remix-run/react';
+import {Contact} from '~/components/Contact';
 
 /**
  * @type {MetaFunction<typeof loader>}
@@ -32,14 +33,20 @@ export async function loader({params, context}) {
 export default function Page() {
   /** @type {LoaderReturnData} */
   const {page} = useLoaderData();
-  // console.log(page);
+  console.log(page.title);
 
   return (
     <div className="page">
-      <header>
-        <h1>{page.title}</h1>
-      </header>
-      <main dangerouslySetInnerHTML={{__html: page.body}} />
+      {page.title !== 'CONTACT US' ? (
+        <>
+          <header>
+            <h1>{page.title}</h1>
+          </header>
+          <main dangerouslySetInnerHTML={{__html: page.body}} />
+        </>
+      ) : (
+        <Contact />
+      )}
     </div>
   );
 }
