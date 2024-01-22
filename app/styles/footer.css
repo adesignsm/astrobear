@@ -1,0 +1,71 @@
+.footer {
+    display: flex;
+    width: auto;
+    justify-content: space-between;
+    padding: 6rem;
+    border-top: 1px solid #E2F1C3;
+    background-image: url("https://cdn.shopify.com/s/files/1/0507/4780/1765/files/genericgradient_footer_1.jpg?v=1675462494");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.navigation-container {
+    display: flex;
+    gap: 100px;
+}
+
+.navigation-container h2 {
+    color: #E2F1C3;
+    font-size: x-large;
+    cursor: pointer;
+}
+
+.navigation-container li {
+    cursor: pointer;
+}
+
+.shop-nav a {
+    color: #fff;
+}
+
+.main-nav a {
+    color: #E2F1C3;
+}
+
+.newsletter h2 {
+    font-size: x-large;
+    color: #E2F1C3;
+    margin-bottom: 0;
+}
+
+.newsletter p {
+    font-size: small;
+    text-transform: none;
+    margin-top: 0;
+}
+
+.newsletter input[type=email] {
+    background-color: transparent;
+    margin: 0;
+    border: none;
+    text-transform: none;
+}
+
+.newsletter input[type=email]:focus {
+    outline: none;
+}
+
+.newsletter button {
+    background-color: transparent;
+    border: none;
+}
+
+.newsletter .input-container {
+    border: 1px solid #E2F1C3;
+    width: fit-content;
+    padding: .2rem .5rem;
+    min-width: 240px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: .5rem;
+}
