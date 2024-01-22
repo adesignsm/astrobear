@@ -23,6 +23,7 @@ import faqStyles from './styles/faq.css';
 import homeStyles from './styles/home.css';
 import productsStyles from './styles/products.css';
 import collectionStyles from './styles/collections.css';
+import footerStyles from './styles/footer.css';
 import {Layout} from '~/components/Layout';
 
 /**
@@ -55,6 +56,7 @@ export function links() {
     {rel: 'stylesheet', href: homeStyles},
     {rel: 'stylesheet', href: productsStyles},
     {rel: 'stylesheet', href: collectionStyles},
+    {rel: 'stylesheet', href: footerStyles},
     {
       rel: 'preconnect',
       href: 'https://cdn.shopify.com',
