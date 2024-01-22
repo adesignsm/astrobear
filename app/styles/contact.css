@@ -1,0 +1,75 @@
+.contact-page {
+    width: fit-content;
+    height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contact-page .contact-form {
+    max-width: none;
+}
+
+.contact-page .contact-text {
+    width: 100%;
+    margin-top: -10rem;
+    margin-bottom: 3rem;
+}
+
+
+.contact-page .contact-text p {
+    text-transform: none;
+}
+
+.contact-page .name-email-container,
+.contact-page .phone-number-container,
+.contact-page .message-container {
+    display: flex;
+}
+
+.contact-page input[type=text],
+.contact-page input[type=email],
+.contact-page input[type=tel],
+.contact-page textarea {
+    width: 100%;
+    background-color: #020912;
+    text-transform: none;
+    border: 1px solid #E2F1C3;
+    font-size: large;
+    margin: 0.5rem;
+    padding: 1rem;
+}
+
+.contact-page input[type=text]::placeholder,
+.contact-page input[type=email]::placeholder,
+.contact-page input[type=tel]::placeholder,
+.contact-page textarea::placeholder {
+    color: #E2F1C3;
+    opacity: 1;
+}
+
+.contact-page .button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.contact-page .button-container button {
+    background-color: #000;
+    padding: 1rem 4rem;
+    border: 1px solid #fff;
+    border-radius: 15px;
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 1em;
+    font-weight: 300;
+    letter-spacing: 2px;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.contact-page .button-container button:hover {
+    color: #000;
+    background-color: #E2F1C3;
+}
