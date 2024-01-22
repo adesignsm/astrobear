@@ -82,9 +82,9 @@ export function HeaderMenu({menu, primaryDomainUrl, viewport}) {
                 className={`header-menu-item ${isDropdownOpen ? 'active' : ''}`}
                 onClick={toggleShopDropdown}
               >
-                <NavLink className="header-menu-item" key={item.id}>
+                <p className="header-menu-item" key={item.id}>
                   {item.title}
-                </NavLink>
+                </p>
                 <div className={`dropdown-content ${isDropdownOpen ? 'active' : null}`}>
                     {item.items.map((subItem) => {
                       return (
@@ -93,7 +93,7 @@ export function HeaderMenu({menu, primaryDomainUrl, viewport}) {
                           end
                           onClick={closeAside}
                           prefetch="intent"
-                          to={url}
+                          to={`/collections/${subItem.url.split('/collections/')[1]}`}
                         >
                           {subItem.title}
                         </NavLink>

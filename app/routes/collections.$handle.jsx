@@ -47,8 +47,16 @@ export default function Collection() {
 
   return (
     <div className="collection">
-      <h1>{collection.title}</h1>
-      <p className="collection-description">{collection.description}</p>
+      <div className='collections-details'>
+        <h1>{collection.title}</h1>
+        <p className="collection-description">{collection.description}</p>
+      </div>
+      <div className='collection-buttons'>
+        {/* <button className='filter-button'> Filter </button> */}
+        <h2 className='collection-length'>
+          {collection.products.nodes.length} product{collection.products.nodes.length > 1 ? "'s" : ''}
+        </h2>
+      </div>
       <Pagination connection={collection.products}>
         {({nodes, isLoading, PreviousLink, NextLink}) => (
           <>
@@ -57,9 +65,11 @@ export default function Collection() {
             </PreviousLink>
             <ProductsGrid products={nodes} />
             <br />
-            <NextLink>
-              {isLoading ? 'Loading...' : <span>Load more ↓</span>}
-            </NextLink>
+            <div className='load-more-container'>
+              <NextLink className='load-more'>
+                {isLoading ? 'Loading...' : <span>Load more ↓</span>}
+              </NextLink>
+            </div>
           </>
         )}
       </Pagination>
@@ -111,10 +121,24 @@ function ProductItem({product, loading}) {
           sizes="(min-width: 45em) 400px, 100vw"
         />
       )}
-      <h4>{product.title}</h4>
-      <small>
-        <Money data={product.priceRange.minVariantPrice} />
-      </small>
+      <div className='product-details'>
+        <h4>{product.title}</h4>
+        <medium className='money-tag'>
+          <Money data={product.priceRange.minVariantPrice} />
+        </medium>
+        <div className='tags-container'>
+          {product.collections.nodes.map((collection) => {
+            return (
+              <div className='tag'>
+                <p>{collection.title}</p>
+              </div>
+            )
+          })}
+        </div>
+        <Link key={product.id} className='button-link' to={`/products/${product.handle}`}>
+          <button> Go to product </button>
+        </Link>
+      </div>
     </Link>
   );
 }
@@ -128,6 +152,7 @@ const PRODUCT_ITEM_FRAGMENT = `#graphql
     id
     handle
     title
+    tags
     featuredImage {
       id
       altText
@@ -149,6 +174,13 @@ const PRODUCT_ITEM_FRAGMENT = `#graphql
           name
           value
         }
+      }
+    }
+    collections(first: 10) { # You can adjust the number of collections you want to retrieve
+      nodes {
+        id
+        title
+        handle
       }
     }
   }

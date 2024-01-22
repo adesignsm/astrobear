@@ -365,13 +365,13 @@ aside li {
 * routes/collections.$handle.tsx
 * --------------------------------------------------
 */
-.collection-description {
+/* .collection-description {
   margin-bottom: 1rem;
   max-width: 95%;
   @media (min-width: 45em) {
     max-width: 600px;
   }
-}
+} */
 
 .products-grid {
   display: grid;
