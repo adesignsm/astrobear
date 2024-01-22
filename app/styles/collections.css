@@ -1,0 +1,51 @@
+.collections-details {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.collection-buttons {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.collection-buttons button {
+    width: auto;
+    background-color: #000;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 1rem;
+    border-radius: 10px;
+    font-size: medium;
+    cursor: pointer;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    transition: color .3s ease-in-out, background-color .3s ease-in-out;
+    text-align: center;
+}
+
+.load-more-container {
+    display: flex;
+    justify-content: center;
+}
+
+.load-more-container .load-more {
+    width: 30%;
+    background-color: #000;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 1rem;
+    border-radius: 10px;
+    font-size: medium;
+    cursor: pointer;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    transition: color .3s ease-in-out, background-color .3s ease-in-out;
+    text-align: center;
+}
+
+.load-more-container .load-more:hover {
+    color: #e2f1c3;
+    color: #000;
+}

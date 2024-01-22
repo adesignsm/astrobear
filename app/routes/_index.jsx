@@ -194,8 +194,6 @@ function FeaturedCollection({collection}) {
  * }}
  */
 function RecommendedProducts({products}) {
-  console.log(products);
-
   return (
     <div className="recommended-products">
       <Suspense fallback={<div>Loading...</div>}>
