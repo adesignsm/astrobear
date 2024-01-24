@@ -4,6 +4,11 @@
     padding: 5rem 2rem;
     flex-direction: row-reverse;
 
+    .category-item a {
+        display: inline-block;
+        height: 100%;
+    }
+
     .category-item img {
         border-radius: 100%;
         width: 100%;
@@ -22,6 +27,7 @@
         position: absolute;
         top: 0;
         left: 0;
+        z-index: 2;
 
         &.show {
             opacity: 1;
