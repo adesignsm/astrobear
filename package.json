@@ -12,17 +12,23 @@
   },
   "prettier": "@shopify/prettier-config",
   "dependencies": {
+    "@react-spring/three": "^9.7.3",
+    "@react-three/drei": "^9.96.1",
+    "@react-three/fiber": "^8.15.14",
+    "@react-three/postprocessing": "^2.15.12",
     "@remix-run/react": "2.1.0",
     "@remix-run/server-runtime": "2.1.0",
     "@shopify/cli": "3.51.0",
     "@shopify/cli-hydrogen": "^6.1.0",
     "@shopify/hydrogen": "~2023.10.3",
     "@shopify/remix-oxygen": "^2.0.2",
+    "@types/three": "^0.160.0",
     "graphql": "^16.6.0",
     "graphql-tag": "^2.12.6",
     "isbot": "^3.6.6",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "three": "^0.160.1"
   },
   "devDependencies": {
     "@remix-run/dev": "2.1.0",
