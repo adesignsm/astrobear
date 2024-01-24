@@ -11,7 +11,7 @@ export const Hero = () => {
           <Suspense fallback={null}>
             <Scene />
             <EffectComposer>
-              <Bloom intensity={5} luminanceThreshold={0} luminanceSmoothing={0} height={window.innerHeight} />
+              <Bloom intensity={5} luminanceThreshold={0} luminanceSmoothing={0} height={1000} />
             </EffectComposer>
           </Suspense>
         </Canvas>

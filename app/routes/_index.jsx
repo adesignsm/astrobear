@@ -112,8 +112,8 @@ const FeaturedCategories = ({data}) => {
 
   useEffect(() => {
     const handleMouseMove = (e) => {
-      setXpos(e.clientX);
-      setYpos(e.clientY);
+      setXpos(e.clientX + 20);
+      setYpos(e.clientY + 600);
     }
 
     document.addEventListener('mousemove', handleMouseMove);
@@ -133,6 +133,10 @@ const FeaturedCategories = ({data}) => {
     descriptionCard.classList.remove('show');
   }
 
+  const handleClick = (e) => {
+    window.location.href = `/collections/${e.target.dataset.handle}`
+  }
+
   return (
     <>
       {data.map((cat) => {
@@ -147,8 +151,10 @@ const FeaturedCategories = ({data}) => {
                 src={cat.image.url} 
                 onMouseOver={(e) => handleMouseEnter(e)}
                 onMouseLeave={(e) => handleMouseLeave(e)}
+                onClick={(e) => handleClick(e)}
+                data-handle={cat.handle}
               />
-              <div className='description-card' style={{top: `${yPos + 600}px`, left: `${xPos + 20}px`}}>
+              <div className='description-card' style={{top: `${yPos}px`, left: `${xPos}px`}}>
                 <div className='title-container'>
                   <h1>{cat.title}</h1>
                 </div>
