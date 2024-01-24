@@ -1,0 +1,11 @@
+.hero-section {
+    height: 100vh;
+}
+
+.hero-section h1 {
+    text-align: center;
+    display: flex;
+    min-width: 800px;
+    font-weight: initial;
+    line-height: normal;
+}

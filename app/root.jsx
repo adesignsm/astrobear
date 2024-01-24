@@ -24,6 +24,7 @@ import homeStyles from './styles/home.css';
 import productsStyles from './styles/products.css';
 import collectionStyles from './styles/collections.css';
 import footerStyles from './styles/footer.css';
+import heroStyles from './styles/hero.css';
 import {Layout} from '~/components/Layout';
 
 /**
@@ -57,6 +58,7 @@ export function links() {
     {rel: 'stylesheet', href: productsStyles},
     {rel: 'stylesheet', href: collectionStyles},
     {rel: 'stylesheet', href: footerStyles},
+    {rel: 'stylesheet', href: heroStyles},
     {
       rel: 'preconnect',
       href: 'https://cdn.shopify.com',

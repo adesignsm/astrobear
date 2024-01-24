@@ -2,6 +2,7 @@ import {defer} from '@shopify/remix-oxygen';
 import {Await, useLoaderData, Link} from '@remix-run/react';
 import {Suspense, useState, useEffect} from 'react';
 import {Image, Money} from '@shopify/hydrogen';
+import {Hero} from '~/components/Hero';
 
 /**
  * @type {MetaFunction}
@@ -31,7 +32,7 @@ export default function Homepage() {
   return (
     <div className="home">
       <section className='hero-section'>
-
+        <Hero />
       </section>
       <section className='category-section'>
         <FeaturedCategories data={data.featuredCategories} />
@@ -147,7 +148,7 @@ const FeaturedCategories = ({data}) => {
                 onMouseOver={(e) => handleMouseEnter(e)}
                 onMouseLeave={(e) => handleMouseLeave(e)}
               />
-              <div className='description-card' style={{top: `${yPos}px`, left: `${xPos}px`}}>
+              <div className='description-card' style={{top: `${yPos + 600}px`, left: `${xPos + 20}px`}}>
                 <div className='title-container'>
                   <h1>{cat.title}</h1>
                 </div>
