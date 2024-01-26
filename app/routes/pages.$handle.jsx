@@ -39,7 +39,7 @@ export default function Page() {
       {page.title !== 'CONTACT US' ? (
         <>
           <header className='page-header'>
-            <h1>{page.title}</h1>
+            <h1 className={`title-${page.title}`}>{page.title}</h1>
           </header>
           <main dangerouslySetInnerHTML={{__html: page.body}} />
         </>
