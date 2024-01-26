@@ -7,6 +7,11 @@
     justify-content: center;
 }
 
+.contact-page h1 {
+    text-align: center;
+    font-size: 3em;
+}
+
 .contact-page .contact-form {
     max-width: none;
 }
@@ -72,4 +77,19 @@
 .contact-page .button-container button:hover {
     color: #000;
     background-color: #E2F1C3;
+}
+
+@media only screen and (min-width: 375px) and (max-width: 768px) {
+    .contact-page {
+        height: 100%;
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+    }
+
+    .contact-page .contact-text {
+        margin-top: 0;
+        margin-bottom: 2rem;
+        width: 80vw;
+        padding: 1rem;
+    }
 }

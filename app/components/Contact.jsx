@@ -2,6 +2,7 @@ export const Contact = () => {
     return (
         <>
             <div className="contact-page">
+                <h1>Contact</h1>
                 <div class="contact-text">
                     <p>Please feel free to contact us if you have any questions or special request.</p>
                     <p>We will get back to you in 2 to 4 business days.</p>
