@@ -65,3 +65,21 @@
         }
     }
 }
+
+@media only screen and (min-width: 375px) and (max-width: 768px) {
+    .about-top {
+        margin-bottom: 7rem !important;
+    }
+
+    .about-top h3 {
+        font-weight: 800 !important;
+    }
+
+    .about-bottom {
+        width: 80vw !important;
+    }
+
+    .button--large-dark.button-about {
+        margin-bottom: 4rem;
+    }
+}
