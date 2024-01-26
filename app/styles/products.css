@@ -138,4 +138,8 @@ input[type=number]:focus {
         display: flex;
         flex-direction: column;
     }
+
+    .product {
+        padding: 1rem;
+    }
 }
