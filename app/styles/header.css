@@ -69,3 +69,21 @@
         min-width: 20px;
     }
 }
+
+.mobile-ctas {
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    border-bottom: 1px solid #e2f1c3;
+}
+
+.mobile-ctas a {
+    margin: .5rem;
+    transform: scale(0.9);
+}
+
+@media only screen and (min-width: 375px) and (max-width: 768px) {
+    .header-ctas .desktop-cta {
+        display: none;
+    }
+}

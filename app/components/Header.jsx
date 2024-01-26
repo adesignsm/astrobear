@@ -35,7 +35,7 @@ export function Header({header, isLoggedIn, cart}) {
  *   viewport: Viewport;
  * }}
  */
-export function HeaderMenu({menu, primaryDomainUrl, viewport}) {
+export function HeaderMenu({menu, primaryDomainUrl, viewport, cart}) {
   const {publicStoreDomain} = useRootLoaderData();
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const className = `header-menu-${viewport}`;
@@ -58,8 +58,8 @@ export function HeaderMenu({menu, primaryDomainUrl, viewport}) {
           end
           onClick={closeAside}
           prefetch="intent"
-          style={activeLinkStyle}
           to="/"
+          className='header-menu-item'
         >
           Home
         </NavLink>
@@ -118,6 +118,16 @@ export function HeaderMenu({menu, primaryDomainUrl, viewport}) {
             );
           }
       })}
+      {viewport === 'mobile' && (
+        <div className='mobile-ctas'>
+          <NavLink className='desktop-cta' prefetch="intent" to="/account" style={activeLinkStyle}>
+            {/* {isLoggedIn ? 'Account' : 'Sign in'} */}
+            <img src={ACCOUNT_ICON} />
+          </NavLink>
+          <SearchToggle />
+          <CartToggle cart={cart} />
+        </div>
+      )}
     </nav>
   );
 }
@@ -130,7 +140,7 @@ function HeaderCtas({isLoggedIn, cart}) {
     <nav className="header-ctas" role="navigation">
       <HeaderMenuMobileToggle />
       <SearchToggle />
-      <NavLink prefetch="intent" to="/account" style={activeLinkStyle}>
+      <NavLink className='desktop-cta' prefetch="intent" to="/account" style={activeLinkStyle}>
         {/* {isLoggedIn ? 'Account' : 'Sign in'} */}
         <img src={ACCOUNT_ICON} />
       </NavLink>
@@ -148,14 +158,14 @@ function HeaderMenuMobileToggle() {
 }
 
 function SearchToggle() {
-  return <a href="#search-aside"><img src={SEARCH_ICON} /></a>;
+  return <a className='desktop-cta' href="#search-aside"><img src={SEARCH_ICON} /></a>;
 }
 
 /**
  * @param {{count: number}}
  */
 function CartBadge({count}) {
-  return <a href="#cart-aside"><img src={CART_ICON} /><span className='cart-count'>{count}</span></a>;
+  return <a className='desktop-cta' href="#cart-aside"><img src={CART_ICON} /><span className='cart-count'>{count}</span></a>;
 }
 
 /**
