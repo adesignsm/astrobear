@@ -9,3 +9,24 @@
     font-weight: initial;
     line-height: normal;
 }
+
+@media only screen and (min-width: 375px) and (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2em !important;
+        min-width: 400px;
+    }
+
+    .hero-section h1:nth-child(1) {
+        transform: translateX(-55%) !important;
+    }
+
+    .hero-section h1:nth-child(2) {
+        transform: translateX(-55%) !important;
+        min-width: 300px !important;
+    }
+
+    .hero-section h1:nth-child(3) {
+        transform: translateX(-55%) !important;
+        min-width: 300px !important;
+    }
+}
