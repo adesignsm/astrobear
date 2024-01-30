@@ -25,6 +25,7 @@ import productsStyles from './styles/products.css';
 import collectionStyles from './styles/collections.css';
 import footerStyles from './styles/footer.css';
 import heroStyles from './styles/hero.css';
+import bundleAndSaveStyles from './styles/bundleAndSave.css';
 import {Layout} from '~/components/Layout';
 
 /**
@@ -59,6 +60,7 @@ export function links() {
     {rel: 'stylesheet', href: collectionStyles},
     {rel: 'stylesheet', href: footerStyles},
     {rel: 'stylesheet', href: heroStyles},
+    {rel: 'stylesheet', href: bundleAndSaveStyles},
     {
       rel: 'preconnect',
       href: 'https://cdn.shopify.com',
