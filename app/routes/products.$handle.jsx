@@ -1,6 +1,7 @@
-import {Suspense, useState} from 'react';
+import {Suspense, useState, useEffect} from 'react';
 import {defer, redirect} from '@shopify/remix-oxygen';
 import {Await, Link, useLoaderData} from '@remix-run/react';
+import Client from 'shopify-buy';
 import {RecommendedProducts} from './_index';
 
 import {
@@ -107,7 +108,14 @@ export default function Product() {
   /** @type {LoaderReturnData} */
   const {product, variants} = useLoaderData();
   const {selectedVariant} = product;
-  // console.log(product)
+
+  const [bundleProductImages, setBundleProductImages] = useState([]);
+
+  const metaValues = product.metafield.value;
+  const parsedMetaValues = JSON.parse(metaValues);
+
+  console.log(product.images.edges)
+
   return (
     <div className="product">
       <ProductImage image={selectedVariant?.image} />
@@ -116,6 +124,16 @@ export default function Product() {
         product={product}
         variants={variants}
       />
+      <div className='bundle-product-container'>
+        <h1> Products Included</h1>
+        <div className='bundle-product-images'>
+          {product.images.edges.slice(1).map((image) => {
+            return (
+              <img key={image.node.id} src={image.node.src} />
+            )
+          })}
+        </div>
+      </div>
     </div>
   );
 }
@@ -124,6 +142,7 @@ export default function Product() {
  * @param {{image: ProductVariantFragment['image']}}
  */
 function ProductImage({image}) {
+
   if (!image) {
     return <div className="product-image" />;
   }
@@ -317,6 +336,7 @@ function ProductOptions({option}) {
  * }}
  */
 function AddToCartButton({analytics, children, disabled, lines, onClick}) {
+  console.log(children)
   return (
     <CartForm route="/cart" inputs={{lines}} action={CartForm.ACTIONS.LinesAdd}>
       {(fetcher) => (
@@ -388,6 +408,21 @@ const PRODUCT_FRAGMENT = `#graphql
       name
       values
     }
+    images(first: 10) {
+      edges {
+        node {
+          id
+          src
+          altText
+          width
+          height
+        }
+      }
+    }
+    metafield(namespace: "custom" key: "bundleProducts") {
+      key
+      value
+    }
     selectedVariant: variantBySelectedOptions(selectedOptions: $selectedOptions) {
       ...ProductVariant
     }
@@ -402,6 +437,17 @@ const PRODUCT_FRAGMENT = `#graphql
     }
   }
   ${PRODUCT_VARIANT_FRAGMENT}
+`;
+
+const BUNDLE_PRODUCT_IMAGES = `
+  query ProductImage($country: CountryCode, $gid: ID) {
+    product(id: $gid) {
+      image {
+        url
+        altText
+      }
+    }
+  }
 `;
 
 const PRODUCT_QUERY = `#graphql

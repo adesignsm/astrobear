@@ -516,7 +516,7 @@ aside li {
 
 .product-main {
   align-self: start;
-  position: sticky;
+  /* position: sticky; */
   top: 6rem;
 }
 

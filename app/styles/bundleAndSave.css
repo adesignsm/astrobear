@@ -1,0 +1,101 @@
+.bundles-container {
+    display: flex;
+    width: 100vw;
+    margin: 0 auto;
+    justify-content: space-evenly;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+#zerogravity-container, #skyrocket-container, #holiday-bundle-container {
+    max-width: 400px;
+    box-sizing: content-box;
+}
+
+.bundle-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5rem;
+    padding: 2rem !important;
+    border-radius: 5px;
+}
+
+.bundle-container img {
+    max-width: 20vw;
+    min-width: 100%;
+    pointer-events: none;
+}
+
+.bundles-container h1 {
+    font-size: 1.5em;
+    margin-bottom: 0;
+    color: #e2f1c3;
+    margin-top: 0;
+}
+
+.bundles-container p {
+    flex: 1;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.bundles-container h3 {
+    color: #fff;
+    pointer-events: none;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.bundles-container h4 {
+    font-size: 1em;
+    margin-bottom: 1rem;
+    color: #e2f1c3;
+}
+
+.bundles-container ul {
+    font-size: .8em;
+    padding-left: 1rem;
+}
+
+.bundles-container .includes-container {
+    display: flex;
+    border-top: 1px solid #fff;
+    justify-content: space-between;
+}
+
+.bundles-container .includes-container .effects ul {
+    list-style: none;
+    display: flex;
+    padding-left: 0;
+}
+
+.bundles-container .includes-container .effects li {
+    text-align: center;
+    border: 1px solid #fff;
+}
+
+.bundles-container .includes-container .effects img {
+    max-width: 100px;
+}
+
+.bundles-container .includes-container .effects p {
+    padding-bottom: 1rem;
+}
+
+.bundles-container .cta-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 5rem;
+}
+
+.bundles-container .cta-container button {
+    background-color: #e2f1c3;
+    font-size: 1.5em;
+    border: none;
+    padding: 1rem 10rem;
+    font-family: Roboto Mono;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #000;
+    font-family: 'Roboto Mono', monospace;
+}

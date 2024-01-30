@@ -1,6 +1,7 @@
 import {json} from '@shopify/remix-oxygen';
 import {useLoaderData} from '@remix-run/react';
 import {Contact} from '~/components/Contact';
+import {BundleAndSave} from '~/components/BundleAndSave';
 
 /**
  * @type {MetaFunction<typeof loader>}
@@ -34,18 +35,24 @@ export default function Page() {
   /** @type {LoaderReturnData} */
   const {page} = useLoaderData();
 
+  console.log(page)
+
   return (
     <div className="page">
       {page.title !== 'CONTACT US' ? (
-        <>
-          <header className='page-header'>
-            <h1 className={`title-${page.title}`}>{page.title}</h1>
-          </header>
-          <main dangerouslySetInnerHTML={{__html: page.body}} />
-        </>
-      ) : (
-        <Contact />
-      )}
+          page.title === 'Bundle & save' ? (
+            <BundleAndSave />
+          ) : (
+            <>
+              <header className='page-header'>
+                <h1 className={`title-${page.title}`}>{page.title}</h1>
+              </header>
+              <main dangerouslySetInnerHTML={{__html: page.body}} />
+            </>
+          )
+        ) : (
+          <Contact />
+        )}
     </div>
   );
 }

@@ -10,9 +10,9 @@ export const Objects = () => {
       <>
         <pointLight color="blue" position={[8, -25, 5]} intensity={20} />
         <pointLight color="red" position={[0, -height * 2.25, 5]} intensity={10} />
-        <Item color="red" position={[0, 1, 0]}>
+        {/* <Item color="red" position={[0, 1, 0]}>
           <boxGeometry />
-        </Item>
+        </Item> */}
         <Item color="blue" position={[width / 6, -height * 1, 0]}>
           <dodecahedronGeometry />
         </Item>

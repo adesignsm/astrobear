@@ -51,6 +51,7 @@
 
 .product {
     margin-top: 2rem;
+    padding-left: 1rem;
 }
 
 .product-main h1 {
@@ -131,6 +132,16 @@ input[type=number] {
 
 input[type=number]:focus {
     outline: none;
+}
+
+.bundle-product-images {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 1rem;
+}
+
+.bundle-product-images img {
+    width: 100%;
 }
 
 @media only screen and (min-width: 375px) and (max-width: 768px) {
