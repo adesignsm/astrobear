@@ -1,7 +1,7 @@
 import {Suspense, useState, useEffect} from 'react';
 import {defer, redirect} from '@shopify/remix-oxygen';
 import {Await, Link, useLoaderData} from '@remix-run/react';
-import Client from 'shopify-buy';
+// import Client from 'shopify-buy';
 import {RecommendedProducts} from './_index';
 
 import {
@@ -29,13 +29,12 @@ export async function loader({params, request, context}) {
 
   const selectedOptions = getSelectedProductOptions(request).filter(
     (option) =>
-      // Filter out Shopify predictive search query params
       !option.name.startsWith('_sid') &&
       !option.name.startsWith('_pos') &&
       !option.name.startsWith('_psq') &&
       !option.name.startsWith('_ss') &&
       !option.name.startsWith('_v') &&
-      // Filter out third party tracking params
+
       !option.name.startsWith('fbclid'),
   );
 
@@ -43,7 +42,6 @@ export async function loader({params, request, context}) {
     throw new Error('Expected product handle to be defined');
   }
 
-  // await the query for the critical product data
   const {product} = await storefront.query(PRODUCT_QUERY, {
     variables: {handle, selectedOptions},
   });
@@ -62,18 +60,11 @@ export async function loader({params, request, context}) {
   if (firstVariantIsDefault) {
     product.selectedVariant = firstVariant;
   } else {
-    // if no selected variant was returned from the selected options,
-    // we redirect to the first variant's url with it's selected options applied
     if (!product.selectedVariant) {
       throw redirectToFirstVariant({product, request});
     }
   }
 
-  // In order to show which variants are available in the UI, we need to query
-  // all of them. But there might be a *lot*, so instead separate the variants
-  // into it's own separate query that is deferred. So there's a brief moment
-  // where variant options might show as available when they're not, but after
-  // this deffered query resolves, the UI will update.
   const variants = storefront.query(VARIANTS_QUERY, {
     variables: {handle},
   });
@@ -109,12 +100,10 @@ export default function Product() {
   const {product, variants} = useLoaderData();
   const {selectedVariant} = product;
 
-  const [bundleProductImages, setBundleProductImages] = useState([]);
+  console.log(product)
 
-  const metaValues = product.metafield.value;
+  const metaValues = product.metafield !== null ? product.metafield.value : null;
   const parsedMetaValues = JSON.parse(metaValues);
-
-  console.log(product.images.edges)
 
   return (
     <div className="product">
@@ -124,16 +113,18 @@ export default function Product() {
         product={product}
         variants={variants}
       />
-      <div className='bundle-product-container'>
-        <h1> Products Included</h1>
-        <div className='bundle-product-images'>
-          {product.images.edges.slice(1).map((image) => {
-            return (
-              <img key={image.node.id} src={image.node.src} />
-            )
-          })}
+      {product.metafield !== null ? (
+        <div className='bundle-product-container'>
+          <h1> Products Included</h1>
+          <div className='bundle-product-images'>
+            {product.images.edges.slice(1).map((image) => {
+              return (
+                <img key={image.node.id} src={image.node.src} />
+              )
+            })}
+          </div>
         </div>
-      </div>
+      ) : null}
     </div>
   );
 }
@@ -336,7 +327,6 @@ function ProductOptions({option}) {
  * }}
  */
 function AddToCartButton({analytics, children, disabled, lines, onClick}) {
-  console.log(children)
   return (
     <CartForm route="/cart" inputs={{lines}} action={CartForm.ACTIONS.LinesAdd}>
       {(fetcher) => (
@@ -439,16 +429,35 @@ const PRODUCT_FRAGMENT = `#graphql
   ${PRODUCT_VARIANT_FRAGMENT}
 `;
 
-const BUNDLE_PRODUCT_IMAGES = `
-  query ProductImage($country: CountryCode, $gid: ID) {
-    product(id: $gid) {
-      image {
-        url
-        altText
-      }
-    }
-  }
-`;
+// const BUNDLE_PRODUCT_DATA = `
+//   query ProductData($country: CountryCode, $gid: ID) {
+//     product(id: $gid) {
+//       title
+//       description
+//       variants(first: 10) {
+//         edges {
+//           node {
+//             availableForSale
+//           }
+//         }
+//       }
+//       priceRange {
+//         minVariantPrice {
+//           amount
+//           currencyCode
+//         }
+//         maxVariantPrice {
+//           amount
+//           currencyCode
+//         }
+//       }
+//       image {
+//         url
+//         altText
+//       }
+//     }
+//   }
+// `;
 
 const PRODUCT_QUERY = `#graphql
   query Product(

@@ -90,7 +90,7 @@ export const BundleAndSave = () => {
                         </div>
                     </div>
                     <div className='cta-container'>
-                        <NavLink end prefetch="intent" to="/collections/skyrocket">
+                        <NavLink end prefetch="intent" to="/products/skyrocket">
                             <button id='skyrocket-cta' className='cta-button'>View</button>
                         </NavLink>
                     </div>
@@ -135,7 +135,7 @@ export const BundleAndSave = () => {
                         </div>
                     </div>
                     <div className='cta-container'>
-                        <NavLink end prefetch="intent" to="/collections/holiday">
+                        <NavLink end prefetch="intent" to="/products/holiday">
                             <button id='holiday-bundle-cta' className='cta-button'>View</button>
                         </NavLink>
                     </div>
