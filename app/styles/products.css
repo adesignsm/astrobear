@@ -52,6 +52,7 @@
 .product {
     margin-top: 2rem;
     padding-left: 1rem;
+    margin-bottom: 2rem;
 }
 
 .product-main h1 {
@@ -61,6 +62,12 @@
 
 .product-main .product-price {
     font-size: xx-large;
+}
+
+.product-main .product-form {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
 }
 
 .product-main .product-options-grid .product-options-item {
@@ -152,5 +159,9 @@ input[type=number]:focus {
 
     .product {
         padding: 1rem;
+    }
+
+    .product-main .product-form {
+        width: auto;
     }
 }

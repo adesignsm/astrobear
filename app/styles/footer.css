@@ -20,6 +20,10 @@
     cursor: pointer;
 }
 
+.navigation-container ul {
+    list-style: none;
+}
+
 .navigation-container li {
     cursor: pointer;
 }

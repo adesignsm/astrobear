@@ -58,6 +58,10 @@
     }
 }
 
+.header-menu-item p {
+    cursor: pointer;
+}
+
 .header-ctas {
     a {
         color: #fff !important;

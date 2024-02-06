@@ -301,6 +301,7 @@
             justify-content: flex-start;
             align-items: first baseline;
             gap: 100px;
+            list-style: none;
         }
 
         li {
