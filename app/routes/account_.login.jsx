@@ -100,6 +100,14 @@ export default function Login() {
             minLength={8}
             required
           />
+           <div>
+            <p className='account-options'>
+              <Link to="/account/recover">Forgot password →</Link>
+            </p>
+            <p className='account-options'>
+              <Link to="/account/register">Register →</Link>
+            </p>
+          </div>
         </fieldset>
         {error ? (
           <p>
@@ -113,14 +121,6 @@ export default function Login() {
         <button type="submit">Sign in</button>
       </Form>
       <br />
-      <div>
-        <p>
-          <Link to="/account/recover">Forgot password →</Link>
-        </p>
-        <p>
-          <Link to="/account/register">Register →</Link>
-        </p>
-      </div>
     </div>
   );
 }

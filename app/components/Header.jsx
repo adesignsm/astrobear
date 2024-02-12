@@ -120,7 +120,7 @@ export function HeaderMenu({menu, primaryDomainUrl, viewport, cart}) {
       })}
       {viewport === 'mobile' && (
         <div className='mobile-ctas'>
-          <NavLink className='desktop-cta' prefetch="intent" to="/account" style={activeLinkStyle}>
+          <NavLink className='desktop-cta' prefetch="intent" to="/account" style={activeLinkStyle} onClick={() => window.location.href="/account/orders"}>
             {/* {isLoggedIn ? 'Account' : 'Sign in'} */}
             <img src={ACCOUNT_ICON} />
           </NavLink>

@@ -113,6 +113,7 @@ function AccountLayout({customer, children}) {
       <br />
       <AccountMenu />
       {children}
+      <Logout />
     </div>
   );
 }
@@ -128,18 +129,14 @@ function AccountMenu() {
   return (
     <nav role="navigation">
       <NavLink to="/account/orders" style={isActiveStyle}>
-        Orders &nbsp;
+        <button>Orders</button>
       </NavLink>
-      &nbsp;|&nbsp;
       <NavLink to="/account/profile" style={isActiveStyle}>
-        &nbsp; Profile &nbsp;
+        <button>Profile</button>
       </NavLink>
-      &nbsp;|&nbsp;
       <NavLink to="/account/addresses" style={isActiveStyle}>
-        &nbsp; Addresses &nbsp;
+        <button>Addresses</button>
       </NavLink>
-      &nbsp;|&nbsp;
-      <Logout />
     </nav>
   );
 }
