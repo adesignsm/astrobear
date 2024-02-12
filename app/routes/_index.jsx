@@ -8,7 +8,7 @@ import {Hero} from '~/components/Hero';
  * @type {MetaFunction}
  */
 export const meta = () => {
-  return [{title: 'Hydrogen | Home'}];
+  return [{title: 'Astrobear | Home'}];
 };
 
 /**

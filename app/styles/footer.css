@@ -72,12 +72,13 @@
     display: flex;
     justify-content: space-between;
     margin-top: .5rem;
+    margin-bottom: .5rem;
 }
 
 @media only screen and (min-width: 375px) and (max-width: 768px) {
     .footer {
         padding: 1rem;
-        flex-direction: column;
+        flex-direction: column-reverse;
     }
 
     .footer .navigation-container {
