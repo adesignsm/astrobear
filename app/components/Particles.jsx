@@ -4,7 +4,7 @@ import React from 'react'
 
 const particleColors = ['#d879a6', '#5b66a3', 'cfcb6c',]
 
-export const Particles = ({ size=5000 }) => {
+export const Particles = ({ size=500 }) => {
     const { width, height } = useThree((state) => state.viewport)
 
     return (

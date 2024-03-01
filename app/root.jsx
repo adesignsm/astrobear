@@ -172,6 +172,7 @@ export function ErrorBoundary() {
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <Links />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/liquidjs/9.4.2/liquid.min.js"></script>
       </head>
       <body>
         <Layout {...rootData}>
