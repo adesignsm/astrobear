@@ -34,11 +34,10 @@ aside {
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
   height: 100vh;
   width: 100%;
-  min-width: var(--aside-width);
   position: fixed;
   right: calc(-1 * var(--aside-width));
   top: 0;
-  transition: transform 200ms ease-in-out;
+  transition: transform .5s ease-in-out;
   border-left: #e2f1c3;
   color: #e2f1c3;
   z-index: 999;
@@ -50,7 +49,7 @@ aside header {
   display: flex;
   height: var(--header-height);
   justify-content: space-between;
-  padding: 0 20px;
+  padding-left: 2rem;
   width: 100vw;
 }
 
@@ -275,6 +274,7 @@ aside li {
   position: absolute;
   top: 0;
   width: calc(100% - var(--aside-width));
+  display: none;
 }
 
 .overlay .light {
@@ -325,6 +325,7 @@ aside li {
 .header-menu-mobile {
   display: flex;
   flex-direction: column;
+  padding-left: 1.5rem;
 }
 
 /* .header-menu-mobile a {
