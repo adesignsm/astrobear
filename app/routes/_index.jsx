@@ -22,7 +22,7 @@ export async function loader({context}) {
   const featuredCollection = collections.nodes[0];
   const featuredCategories = categories.collections.nodes;
 
-  return defer({featuredCollection, recommendedProducts, featuredCategories});
+  return defer({featuredCollection, recommendedProducts, featuredCategories, categories});
 }
 
 export default function Homepage() {
@@ -34,7 +34,8 @@ export default function Homepage() {
       <section className='hero-section'>
         <Hero />
       </section>
-      <section className='category-section'>
+      <section className='featured-category-section'>
+        <h1> Shop by Category </h1>
         <FeaturedCategories data={data.featuredCategories} />
       </section>
       <section className='recommended-products-section'>
@@ -110,6 +111,8 @@ const FeaturedCategories = ({data}) => {
   const [xPos, setXpos] = useState(0);
   const [yPos, setYpos] = useState(0);
 
+  console.log(data)
+
   useEffect(() => {
     const handleMouseMove = (e) => {
       setXpos(e.clientX + 20);
@@ -138,12 +141,14 @@ const FeaturedCategories = ({data}) => {
   }
 
   return (
-    <>
+    <div className='category-section'>
       {data.map((cat) => {
         if (cat.title === 'EDIBLES' 
             || cat.title === 'FLOWERS'
             || cat.title === 'MAGIC MUSHROOMS'
             || cat.title === 'PRE-ROLLS'
+            || cat.title === 'Backwoods'
+            || cat.title === 'Accessories'
         ) {
           return (
             <div className='category-item'>
@@ -154,6 +159,7 @@ const FeaturedCategories = ({data}) => {
                 onClick={(e) => handleClick(e)}
                 data-handle={cat.handle}
               />
+              <h4>{cat.title} →</h4>
               <div className='description-card' style={{top: `${yPos}px`, left: `${xPos}px`}}>
                 <div className='title-container'>
                   <h1>{cat.title}</h1>
@@ -168,7 +174,7 @@ const FeaturedCategories = ({data}) => {
           )
         }
       })}
-    </>
+    </div>
   )
 }
 
@@ -253,7 +259,7 @@ const CATEGORIES_QUERY = `#graphql
   }
 
   query ShopCategories($country: CountryCode, $language: LanguageCode) @inContext(country: $country, language: $language) {
-    collections(first: 12, sortKey: UPDATED_AT, reverse: true) {
+    collections(first: 250, sortKey: UPDATED_AT, reverse: true) {
       nodes {
         ...ShopCategory
       }
@@ -276,7 +282,7 @@ const FEATURED_COLLECTION_QUERY = `#graphql
   }
   query FeaturedCollection($country: CountryCode, $language: LanguageCode)
     @inContext(country: $country, language: $language) {
-    collections(first: 12, sortKey: UPDATED_AT, reverse: true) {
+    collections(first: 250, sortKey: UPDATED_AT, reverse: true) {
       nodes {
         ...FeaturedCollection
       }
@@ -305,7 +311,7 @@ const RECOMMENDED_PRODUCTS_QUERY = `#graphql
         height
       }
     }
-    collections(first: 10) { # You can adjust the number of collections you want to retrieve
+    collections(first: 250) { # You can adjust the number of collections you want to retrieve
       nodes {
         id
         title
