@@ -3,6 +3,8 @@
     gap: 40px;
     padding: 5rem 2rem;
     flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
 
     .category-item a {
         display: inline-block;
@@ -12,6 +14,7 @@
     .category-item img {
         border-radius: 100%;
         width: 100%;
+        max-width: 200px;
         cursor: pointer;
         border: 5px solid #fff;
         animation: rotate 20s linear infinite;
@@ -51,9 +54,40 @@
     }
 }
 
+.featured-category-section h1 {
+    text-align: center;
+    margin-top: .5rem;
+    font-weight: lighter;
+}
+
 @media only screen and (min-width: 375px) and (max-width: 768px) {
     .category-section {
+        flex-direction: row;
+        overflow-x: scroll;
+        padding-top: 0;
+        padding-bottom: 2rem;
+        padding-left: 5rem;
+        padding-right: 0;
+        width: 90%;
+        justify-content: flex-start;
+    }
+
+    .category-section .category-item {
+        display: flex;
+        width: 100%;
         flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .category-section .category-item img {
+        width: fit-content;
+        max-width: 200px;
+    }
+
+    .category-section .category-item h4 {
+        font-weight: lighter;
     }
 }
 

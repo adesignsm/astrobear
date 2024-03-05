@@ -172,7 +172,7 @@ export function ErrorBoundary() {
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <Links />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/liquidjs/9.4.2/liquid.min.js"></script>
+        <script type="text/javascript" async="" src="https://js.smile.io/v1/smile-shopify.js?shop=astrobearstore.myshopify.com"></script>
       </head>
       <body>
         <Layout {...rootData}>
@@ -189,6 +189,7 @@ export function ErrorBoundary() {
         <ScrollRestoration nonce={nonce} />
         <Scripts nonce={nonce} />
         <LiveReload nonce={nonce} />
+        <iframe title="Smile.io Rewards Program Panel" allowfullscreen="true" class="smile-panel-frame"></iframe>
       </body>
     </html>
   );
