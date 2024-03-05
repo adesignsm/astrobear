@@ -30,7 +30,9 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "shopify-buy": "^2.21.1",
-    "three": "^0.160.1"
+    "three": "^0.160.1",
+    "jquery": "^3.7.1",
+    "jquery-ui-bundle": "^1.12.1-migrate"
   },
   "devDependencies": {
     "@remix-run/dev": "2.1.0",
