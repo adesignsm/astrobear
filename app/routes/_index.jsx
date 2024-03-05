@@ -111,8 +111,6 @@ const FeaturedCategories = ({data}) => {
   const [xPos, setXpos] = useState(0);
   const [yPos, setYpos] = useState(0);
 
-  console.log(data)
-
   useEffect(() => {
     const handleMouseMove = (e) => {
       setXpos(e.clientX + 20);
