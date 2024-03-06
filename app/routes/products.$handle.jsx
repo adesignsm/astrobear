@@ -100,8 +100,6 @@ export default function Product() {
   const {product, variants} = useLoaderData();
   const {selectedVariant} = product;
 
-  console.log(product)
-
   const metaValues = product.metafield !== null ? product.metafield.value : null;
   const parsedMetaValues = JSON.parse(metaValues);
 
