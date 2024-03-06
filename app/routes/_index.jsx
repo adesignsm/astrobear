@@ -213,7 +213,7 @@ export function RecommendedProducts({products}) {
             <div className="recommended-products-grid">
               {products.nodes.map((product) => (
                 <Link key={product.id} className="recommended-product" to={`/products/${product.handle}`}>
-                  <Image data={product.images.nodes[0]} aspectRatio="1/1" sizes="(min-width: 60em) 20vw, 50vw"/>
+                  <Image data={product.images.nodes[0]} />
                   <div className='product-details'>
                     <h4>{product.title}</h4>
                     <div className='tags-container'>

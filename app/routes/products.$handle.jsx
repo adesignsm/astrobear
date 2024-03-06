@@ -100,8 +100,6 @@ export default function Product() {
   const {product, variants} = useLoaderData();
   const {selectedVariant} = product;
 
-  console.log(product)
-
   const metaValues = product.metafield !== null ? product.metafield.value : null;
   const parsedMetaValues = JSON.parse(metaValues);
 
@@ -141,10 +139,8 @@ function ProductImage({image}) {
     <div className="product-image">
       <Image
         alt={image.altText || 'Product Image'}
-        aspectRatio="1/1"
         data={image}
         key={image.id}
-        sizes="(min-width: 45em) 50vw, 100vw"
       />
     </div>
   );
