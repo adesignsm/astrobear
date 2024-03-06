@@ -216,7 +216,6 @@ export function RecommendedProducts({products}) {
                   <Image data={product.images.nodes[0]} aspectRatio="1/1" sizes="(min-width: 60em) 20vw, 50vw"/>
                   <div className='product-details'>
                     <h4>{product.title}</h4>
-                    {/* <small><Money data={product.priceRange.minVariantPrice} /></small> */}
                     <div className='tags-container'>
                       {product.collections.nodes.map((collection) => {
                         return (
@@ -227,7 +226,7 @@ export function RecommendedProducts({products}) {
                       })}
                     </div>
                     <Link key={product.id} className='button-link' to={`/products/${product.handle}`}>
-                      <button> Go to product </button>
+                      <button>{Object.keys(product.variants).length > 1 ? 'Select options' : 'Add To Cart'}</button>
                     </Link>
                   </div>
                 </Link>
@@ -314,6 +313,17 @@ const RECOMMENDED_PRODUCTS_QUERY = `#graphql
         id
         title
         handle
+      }
+    }
+    variants(first: 10) { # Adjust the number of variants you want to retrieve
+      nodes {
+        id
+        title
+        sku
+        selectedOptions {
+          name
+          value
+        }
       }
     }
   }

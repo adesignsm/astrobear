@@ -105,6 +105,7 @@ function ProductsGrid({products}) {
 function ProductItem({product, loading}) {
   const variant = product.variants.nodes[0];
   const variantUrl = useVariantUrl(product.handle, variant.selectedOptions);
+
   return (
     <Link
       className="product-item"
@@ -136,7 +137,7 @@ function ProductItem({product, loading}) {
           })}
         </div>
         <Link key={product.id} className='button-link' to={`/products/${product.handle}`}>
-          <button> Go to product </button>
+          <button>{product.variants.nodes.length > 1 ? 'Select Options' : 'Add To Cart'}</button>
         </Link>
       </div>
     </Link>
@@ -168,7 +169,7 @@ const PRODUCT_ITEM_FRAGMENT = `#graphql
         ...MoneyProductItem
       }
     }
-    variants(first: 1) {
+    variants(first: 10) {
       nodes {
         selectedOptions {
           name

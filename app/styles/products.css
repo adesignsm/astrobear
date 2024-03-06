@@ -7,16 +7,18 @@
             display: flex;
             gap: 5px;
             .tag {
-                background-color: #e2f1c3;
+                background-color: transparent;
                 padding: 0.5rem;
                 border-radius: 25px;
-                width: 50%;
+                width: fit-content;
                 text-align: center;
+                border: 1px solid #fff;
 
                 p {
-                    color: #000;
+                    color: #fff;
                     font-size: smaller;
                     font-weight: bolder;
+                    width: fit-content;
                 }
             }
         }
