@@ -1,22 +1,23 @@
 .bundles-container {
     display: flex;
-    width: 100vw;
+    width: 80%;
     margin: 0 auto;
     justify-content: space-evenly;
-    gap: 25px;
-    flex-wrap: wrap;
+    gap: 5px;
+    flex-wrap: nowrap;
 }
 
 #zerogravity-container, #skyrocket-container, #holiday-bundle-container {
     max-width: 400px;
     box-sizing: content-box;
+    transform: scale(0.8);
 }
 
 .bundle-container {
     display: flex;
     flex-direction: column;
     margin-bottom: 5rem;
-    padding: 2rem !important;
+    margin-top: -3rem;
     border-radius: 5px;
 }
 
@@ -35,8 +36,9 @@
 
 .bundles-container p {
     flex: 1;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+    line-height: normal;
 }
 
 .bundles-container h3 {
@@ -63,6 +65,10 @@
     justify-content: space-between;
 }
 
+.bundles-container .includes-container .whats-inside .products-li {
+    cursor: pointer;
+}
+
 .bundles-container .includes-container .effects ul {
     list-style: none;
     display: flex;
@@ -85,7 +91,7 @@
 .bundles-container .cta-container {
     display: flex;
     justify-content: center;
-    padding-top: 5rem;
+    padding-top: 1rem;
 }
 
 .bundles-container .cta-container button {
@@ -98,4 +104,18 @@
     cursor: pointer;
     color: #000;
     font-family: 'Roboto Mono', monospace;
+}
+
+.bundles-container .slider .button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.bundles-container .slider button {
+    background-color: transparent !important;
+    color: #e2f1c3;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
 }

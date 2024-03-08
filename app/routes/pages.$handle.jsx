@@ -1,3 +1,4 @@
+import {useState, useEffect} from 'react';
 import {json} from '@shopify/remix-oxygen';
 import {useLoaderData} from '@remix-run/react';
 import {Contact} from '~/components/Contact';
@@ -28,18 +29,29 @@ export async function loader({params, context}) {
     throw new Response('Not Found', {status: 404});
   }
 
-  return json({page});
+  const collections = await context.storefront.query(ALL_COLLECTIONS_QUERY);
+
+  return json({page, collections});
 }
 
 export default function Page() {
   /** @type {LoaderReturnData} */
-  const {page} = useLoaderData();
+  const {page, collections} = useLoaderData();
+  const [specificCollection, setSpecificCollection] = useState([]);
+
+  useEffect(() => {
+    collections.collections.edges.forEach((collection) => {
+      if (collection.node.title === 'BUNDLE & SAVE') {
+        setSpecificCollection(collection)
+      }
+    })
+  }, [collections]);
 
   return (
     <div className="page">
       {page.title !== 'CONTACT US' ? (
           page.title === 'Bundle & save' ? (
-            <BundleAndSave />
+            <BundleAndSave data={specificCollection}/>
           ) : (
             <>
               <header className='page-header'>
@@ -69,6 +81,38 @@ const PAGE_QUERY = `#graphql
       seo {
         description
         title
+      }
+    }
+  }
+`;
+
+const ALL_COLLECTIONS_QUERY = `#graphql
+  query AllCollections {
+    collections(first: 16) {
+      edges {
+        node {
+          id
+          title
+          description
+          products(first: 10) {
+            edges {
+              node {
+                id
+                title
+                images(first: 5) {
+                  edges {
+                    node {
+                      url
+                      altText
+                    }
+                  }
+                }
+                # Include any other product fields you need
+              }
+            }
+          }
+          # Include any other fields you need for each collection
+        }
       }
     }
   }
