@@ -32,10 +32,10 @@ export const Slider = ({ images, _index }) => {
             {imageSet.length > 0 && index >= 0 && index < imageSet.length && (
                 <img src={imageSet[index].node.url} alt="Slide" />
             )}
-            {/* <div className='button-container'>
+            <div className='button-container'>
                 <button className="prev" onClick={prevSlide}>Previous</button>
                 <button className="next" onClick={nextSlide}>Next</button>
-            </div> */}
+            </div>
         </div>
     );
 };
@@ -44,10 +44,12 @@ export const BundleAndSave = ({data}) => {
     const [zeroGravityImages, setZeroGravityImages] = useState([]);
     const [skyRocketImages, setSkyRocketImages] = useState([]);
     const [holidayImages, setHolidayImages] = useState([]);
+    const [byobImages, setByobImages] = useState([]);
 
     const [ZGindex, setZGIndex] = useState(0);
     const [SRindex, setSRIndex] = useState(0);
     const [Hindex, setHIndex] = useState(0);
+    const [BYOBIndex, setBYOBIndex] = useState(0);
 
     useEffect(() => {
         if (data.node) {
@@ -58,7 +60,9 @@ export const BundleAndSave = ({data}) => {
                     setSkyRocketImages(edge.node.images);
                 } else if (edge.node.title === 'HOLIDAY') {
                     setHolidayImages(edge.node.images);
-                }
+                } else if (edge.node.title === 'BUILD YOUR OWN BUNDLE') {
+                    setByobImages(edge.node.images);
+                }   
             })
         }
     }, [data])
@@ -101,9 +105,9 @@ export const BundleAndSave = ({data}) => {
                             <br />
                             <ul className='products-li'>
                                 <li data-index='1' onClick={(e) => handleZGClick(e)}>7g Project 4516</li>
-                                <li data-index='2' onClick={(e) => handleZGClick(e)}>7g White Marshmallow</li>
-                                <li data-index='3' onClick={(e) => handleZGClick(e)}>7g Cereal Milk</li>
-                                <li data-index='4' onClick={(e) => handleZGClick(e)}>7g Pink Zombie</li>
+                                <li data-index='2' onClick={(e) => handleZGClick(e)}>7g Pink Zombie</li>
+                                <li data-index='3' onClick={(e) => handleZGClick(e)}>7g White Marshmallow</li>
+                                <li data-index='4' onClick={(e) => handleZGClick(e)}>7g Cereal Milk</li>
                             </ul>
                         </div>
                         <div className='effects'>
@@ -196,10 +200,10 @@ export const BundleAndSave = ({data}) => {
                             </ul>
                             <br />
                             <ul className='products-li'>
-                                <li data-index='1' onClick={(e) => handleHClick(e)}>7g Space Cookies</li>
+                                <li data-index='1' onClick={(e) => handleHClick(e)}>7g Pink Zombie</li>
                                 <li data-index='2' onClick={(e) => handleHClick(e)}>7g Ice Cream Cake</li>
-                                <li data-index='3' onClick={(e) => handleHClick(e)}>7g Cereal Milk</li>
-                                <li data-index='4' onClick={(e) => handleHClick(e)}>7g Pink Zombie</li>
+                                <li data-index='3' onClick={(e) => handleHClick(e)}>7g Space Cookies</li>
+                                <li data-index='4' onClick={(e) => handleHClick(e)}>7g Cereal Milk</li>
                             </ul>
                         </div>
                         <div className='effects'>
@@ -219,6 +223,51 @@ export const BundleAndSave = ({data}) => {
                     <div className='cta-container'>
                         <NavLink end prefetch="intent" to="/products/holiday">
                             <button id='holiday-bundle-cta' className='cta-button'>View</button>
+                        </NavLink>
+                    </div>
+                </div>
+                <div id='build-your-own-container' className='bundle-container'>
+                    <Slider 
+                        images={byobImages}
+                        _index={BYOBIndex}
+                    />
+                    <h1>Build Your Own Bundle</h1>
+                    <h3>Mix of 4</h3>
+                    <p>
+                        Choose from Astrobear's selection of buds and craft a bundle unique to you and your crew. 
+                        <br />
+                    </p>
+                    <div className='includes-container'>
+                        <div className='whats-inside'>
+                            <h4>What's Inside</h4>
+                            <ul>
+                                <li>Mix of 4 strains max</li>
+                            </ul>
+                            <br />
+                            {/* <ul className='products-li'>
+                                <li data-index='1' onClick={(e) => handleHClick(e)}>7g Pink Zombie</li>
+                                <li data-index='2' onClick={(e) => handleHClick(e)}>7g Ice Cream Cake</li>
+                                <li data-index='3' onClick={(e) => handleHClick(e)}>7g Space Cookies</li>
+                                <li data-index='4' onClick={(e) => handleHClick(e)}>7g Cereal Milk</li>
+                            </ul> */}
+                        </div>
+                        {/* <div className='effects'>
+                            <h4>Effects</h4>
+                            <ul>
+                                <li>
+                                    <img src="https://cdn.shopify.com/s/files/1/0507/4780/1765/files/balanced.png?v=1703265864" />
+                                    <p>Balanced</p>
+                                </li>
+                                <li>
+                                    <img src="https://cdn.shopify.com/s/files/1/0507/4780/1765/files/euphoria.png?v=1703265864" />
+                                    <p>Euphoria</p>
+                                </li>
+                            </ul>
+                        </div> */}
+                    </div>
+                    <div className='cta-container'>
+                        <NavLink end prefetch="intent" to="/products/build-your-own-bundle">
+                            <button id='holiday-bundle-cta' className='cta-button'>Select Options</button>
                         </NavLink>
                     </div>
                 </div>

@@ -7,7 +7,7 @@
     flex-wrap: nowrap;
 }
 
-#zerogravity-container, #skyrocket-container, #holiday-bundle-container {
+#zerogravity-container, #skyrocket-container, #holiday-bundle-container, #build-your-own-container {
     max-width: 400px;
     box-sizing: content-box;
     transform: scale(0.8);
