@@ -119,3 +119,14 @@
     cursor: pointer;
     font-size: 1.2em;
 }
+@media only screen and (min-width: 768px) and (max-width: 1200px) {
+    .bundles-container {
+        flex-wrap: wrap;
+    }
+}
+
+@media only screen and (min-width: 375px) and (max-width: 768px) {
+    .bundles-container {
+        flex-wrap: wrap;
+    }
+}

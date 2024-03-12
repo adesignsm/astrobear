@@ -1,0 +1,17 @@
+.product-selection {
+    height: 100%;
+    width: fit-content;
+}
+
+.product-selection .products li {
+    list-style: none;
+}
+
+.product-selection .products img {
+    width: 100%;
+    max-width: 75px;
+}
+
+.product-selection .products li .product-form form {
+    display: none;
+}
