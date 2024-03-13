@@ -5,6 +5,10 @@
 
 .product-selection .products li {
     list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-between;
 }
 
 .product-selection .products img {
@@ -14,4 +18,18 @@
 
 .product-selection .products li .product-form form {
     display: none;
+}
+
+.product-selection .products .product-form .product-options {
+    display: none;
+}
+
+
+.product-selection .products .product-form .quantity-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.product-selection .products .product-form .quantity-container button {
+    cursor: pointer;
 }
