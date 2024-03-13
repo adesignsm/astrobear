@@ -12,7 +12,7 @@ export const SecondaryFooter = () => {
                             <li><a href='/collections/edibles'>Edibles</a></li>
                             <li><a href='/collections/pre-rolls'>Pre-Rolls</a></li>
                             <li><a href='/collections/magic-mushrooms'>Mushrooms</a></li>
-                            <li><a href='/collections/bundle-and-save'>Bundle & Save</a></li>
+                            <li><a href='/pages/bundles'>Bundle & Save</a></li>
                             <li><a href='/collections/accessories'>Accessories</a></li>
                         </ul>
                     </nav>

@@ -41,7 +41,7 @@ export default function Homepage() {
       <section className='recommended-products-section'>
         <RecommendedProducts products={data.recommendedProducts} />
         <div className='shop-all-button'>
-          <button>Shop All</button>
+          <a href='/collections'>Shop All</a>
         </div>
       </section>
       <section className='astrorewards-section'>
@@ -49,7 +49,7 @@ export default function Homepage() {
           <h2>ASTROREWARDS</h2>
           <h3>Join the AstroCrew and get rewards on your purchases!</h3>
           <h5>Sign up now to recieve a bonus of 500 points</h5>
-          <button>Lear how it works</button>
+          <a href='/pages/astroreward'>Lear nhow it works</a>
         </div>
         <div className='column-two'>
           <img src='https://cdn.shopify.com/s/files/1/0507/4780/1765/files/astorrewards-bear.png?v=1675461371' />
