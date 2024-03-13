@@ -1,6 +1,9 @@
 import {useState, useEffect} from 'react';
 import { NavLink } from "@remix-run/react"
 
+import NEXT_ARROW from '../assets/next.png';
+import PREV_ARROW from '../assets/previous.png';
+
 export const Slider = ({ images, _index }) => {
     const [index, setIndex] = useState(_index);
     const [imageSet, setImageSet] = useState([]);
@@ -27,15 +30,32 @@ export const Slider = ({ images, _index }) => {
         }
     }, [images])
 
+    console.log(imageSet.length)
+
     return (
         <div className="slider">
             {imageSet.length > 0 && index >= 0 && index < imageSet.length && (
-                <img src={imageSet[index].node.url} alt="Slide" />
+                <img className='slider-image' src={imageSet[index].node.url} alt="Slide" />
             )}
-            <div className='button-container'>
-                <button className="prev" onClick={prevSlide}>Previous</button>
-                <button className="next" onClick={nextSlide}>Next</button>
-            </div>
+            {imageSet.length > 1 && (
+                <>
+                    <div className='button-container'>
+                        <button className="prev" onClick={prevSlide}><img src={PREV_ARROW} /></button>
+                        <button className="next" onClick={nextSlide}><img src={NEXT_ARROW} /></button>
+                    </div>
+                    <div className='tracker'>
+                        {imageSet.map((_index, idx) => {
+                            return (
+                                <div 
+                                    id={`${idx}`} 
+                                    className={`tracker-dot ${idx === index ? 'active' : ''}`}
+                                    key={idx} 
+                                />
+                            )
+                        })}
+                    </div>
+                </>
+            )}
         </div>
     );
 };
@@ -80,21 +100,24 @@ export const BundleAndSave = ({data}) => {
     }
     return (
         <>
+            <div className='bundles-header'>
+                <h1>Bundle & Save</h1>
+                <h2>Buds</h2>
+            </div>
             <div className='bundles-container'>
                 <div id='zerogravity-container' className='bundle-container'>
                     <Slider 
                         images={zeroGravityImages}
                         _index={ZGindex}
                     />
-                    <h1>Zero Gravity</h1>
-                    <h3>Mix of 4</h3>
-                    <p>
-                        The perfect indica nightcap designed to unwind your mind so you can embark on an elevated escape and ~FLOAT~
-                        in a state of profound relaxation.
-                        <br />
-                        <br />
-                        Geared towards the cannabis curious and/or the discerning connoisseur.
-                    </p>
+                    <div className='product-header'>
+                        <h1>Zero Gravity</h1>
+                        <h1>$20</h1>
+                    </div>
+                    <div className='product-tags'>
+                        <h3>Mix of 4</h3>
+                        <h3>Beginner Friendly</h3>
+                    </div>
                     <div className='includes-container'>
                         <div className='whats-inside'>
                             <h4>What's Inside</h4>
@@ -124,9 +147,16 @@ export const BundleAndSave = ({data}) => {
                             </ul>
                         </div>
                     </div>
+                    <p>
+                        The perfect indica nightcap designed to unwind your mind so you can embark on an elevated escape and ~FLOAT~
+                        in a state of profound relaxation.
+                        <br />
+                        <br />
+                        Geared towards the cannabis curious and/or the discerning connoisseur.
+                    </p>
                     <div className='cta-container'>
                         <NavLink end prefetch="intent" to="/products/zerogravity">
-                            <button id='zerogravity-cta' className='cta-button'>View</button>
+                            <button id='zerogravity-cta' className='cta-button'>Add To Cart</button>
                         </NavLink>
                     </div>
                 </div>
@@ -135,14 +165,14 @@ export const BundleAndSave = ({data}) => {
                         images={skyRocketImages}
                         _index={SRindex}
                     />
-                    <h1>Skyrocket</h1>
-                    <h3>Mix of 4</h3>
-                    <p>
-                        When there's a million things to knock out your to-do list, or you’re finally ready to start that creative project you’ve been planning to abort - Astrobear’s Sky Rocket bundle will get you ready for blast-off!
-                        <br />
-                        <br />
-                        Geared towards the cannabis curious and/or the discerning connoisseur.
-                    </p>
+                    <div className='product-header'>
+                        <h1>Sky Rocket</h1>
+                        <h1>$20</h1>
+                    </div>
+                    <div className='product-tags'>
+                        <h3>Mix of 4</h3>
+                        <h3>Beginner Friendly</h3>
+                    </div>
                     <div className='includes-container'>
                         <div className='whats-inside'>
                             <h4>What's Inside</h4>
@@ -172,9 +202,15 @@ export const BundleAndSave = ({data}) => {
                             </ul>
                         </div>
                     </div>
+                    <p>
+                        When there's a million things to knock out your to-do list, or you’re finally ready to start that creative project you’ve been planning to abort - Astrobear’s Sky Rocket bundle will get you ready for blast-off!
+                        <br />
+                        <br />
+                        Geared towards the cannabis curious and/or the discerning connoisseur.
+                    </p>
                     <div className='cta-container'>
                         <NavLink end prefetch="intent" to="/products/skyrocket">
-                            <button id='skyrocket-cta' className='cta-button'>View</button>
+                            <button id='skyrocket-cta' className='cta-button'>Add To Cart</button>
                         </NavLink>
                     </div>
                 </div>
@@ -183,14 +219,14 @@ export const BundleAndSave = ({data}) => {
                         images={holidayImages}
                         _index={Hindex}
                     />
-                    <h1>Ho-Ho-Holiday Bundle</h1>
-                    <h3>Mix of 4</h3>
-                    <p>
-                        This fun hybrid bundle is ready for any holiday adventure with your Astrocrew. Whether enjoying a day in the snow, a cozy movie, or a tranquil evening by the fireplace - try this bundle to make your holidays even more jolly. 
-                        <br />
-                        <br />
-                        Geared towards the cannabis curious and/or the discerning connoisseur.
-                    </p>
+                    <div className='product-header'>
+                        <h1>Ho-Ho-Ho-Holiday</h1>
+                        <h1>$20</h1>
+                    </div>
+                    <div className='product-tags'>
+                        <h3>Mix of 4</h3>
+                        <h3>Beginner Friendly</h3>
+                    </div>
                     <div className='includes-container'>
                         <div className='whats-inside'>
                             <h4>What's Inside</h4>
@@ -220,9 +256,15 @@ export const BundleAndSave = ({data}) => {
                             </ul>
                         </div>
                     </div>
+                    <p>
+                        This fun hybrid bundle is ready for any holiday adventure with your Astrocrew. Whether enjoying a day in the snow, a cozy movie, or a tranquil evening by the fireplace - try this bundle to make your holidays even more jolly. 
+                        <br />
+                        <br />
+                        Geared towards the cannabis curious and/or the discerning connoisseur.
+                    </p>
                     <div className='cta-container'>
                         <NavLink end prefetch="intent" to="/products/holiday">
-                            <button id='holiday-bundle-cta' className='cta-button'>View</button>
+                            <button id='holiday-bundle-cta' className='cta-button'>Add To Cart</button>
                         </NavLink>
                     </div>
                 </div>
@@ -232,11 +274,10 @@ export const BundleAndSave = ({data}) => {
                         _index={BYOBIndex}
                     />
                     <h1>Build Your Own Bundle</h1>
-                    <h3>Mix of 4</h3>
-                    <p>
-                        Choose from Astrobear's selection of buds and craft a bundle unique to you and your crew. 
-                        <br />
-                    </p>
+                    <div className='product-tags'>
+                        <h3>Mix of 4</h3>
+                        <h3>Beginner Friendly</h3>
+                    </div>
                     <div className='includes-container'>
                         <div className='whats-inside'>
                             <h4>What's Inside</h4>
@@ -265,6 +306,10 @@ export const BundleAndSave = ({data}) => {
                             </ul>
                         </div> */}
                     </div>
+                    <p>
+                        Choose from Astrobear's selection of buds and craft a bundle unique to you and your crew. 
+                        <br />
+                    </p>
                     <div className='cta-container'>
                         <NavLink end prefetch="intent" to="/products/build-your-own-bundle">
                             <button id='holiday-bundle-cta' className='cta-button'>Select Options</button>
