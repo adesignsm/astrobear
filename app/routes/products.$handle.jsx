@@ -304,7 +304,7 @@ function ProductForm({product, selectedVariant, variants}) {
     }
   }
 
-  console.log(totalQuantity)
+  // console.log(totalQuantity)
   
   return (
     <div className="product-form">
@@ -326,7 +326,10 @@ function ProductForm({product, selectedVariant, variants}) {
       {!location.pathname.includes('build-your-own-bundle') ? (
         <AddToCartButton
           disabled={!selectedVariant || !selectedVariant.availableForSale}
-          onClick={() => {window.location.href = window.location.href + '#cart-aside';}}
+          onClick={() => {
+            window.location.href = window.location.href + '#cart-aside';
+            // console.log(selectedVariant)
+          }}
           lines={selectedVariant
             ? [{
                 merchandiseId: selectedVariant.id,
@@ -338,12 +341,17 @@ function ProductForm({product, selectedVariant, variants}) {
       ) : (
         <AddToCartButton
           disabled={!selectedVariant || !selectedVariant.availableForSale}
-          onClick={() => {window.location.href = window.location.href + '#cart-aside';}}
-          lines={selectedVariant
-            ? [{
-                merchandiseId: selectedVariant.id,
-                quantity: parseInt(quantity),
-              }] : []}
+          onClick={() => {
+            if (totalQuantity.length < 4) {
+              alert('you need to select 4 products to save on a bundle!');
+            } else {
+              window.location.href = window.location.href + '#cart-aside';
+            }
+          }}
+          lines={selectedVariant && totalQuantity.length > 3
+            ? totalQuantity.map(item => ({
+                merchandiseId: item.variants.nodes[0].id,
+              })) : []}
         >
           {selectedVariant?.availableForSale ? 'Add to cart' : 'Sold out'}
         </AddToCartButton>
