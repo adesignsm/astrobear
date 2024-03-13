@@ -1,6 +1,7 @@
 import {Suspense, useState, useEffect} from 'react';
 import {defer, redirect} from '@shopify/remix-oxygen';
 import {Await, Link, useLoaderData} from '@remix-run/react';
+import { useLocation } from '@remix-run/react';
 // import Client from 'shopify-buy';
 import {RecommendedProducts} from './_index';
 
@@ -12,6 +13,8 @@ import {
   CartForm,
 } from '@shopify/hydrogen';
 import {getVariantUrl} from '~/utils';
+
+const totalQuantity = [];
 
 /**
  * @type {MetaFunction<typeof loader>}
@@ -50,6 +53,28 @@ export async function loader({params, request, context}) {
     throw new Response(null, {status: 404});
   }
 
+  let metaValues, parsedMetaValues;
+
+  if (product.title === 'BUILD YOUR OWN BUNDLE') {
+    metaValues = product.metafield !== null ? product.metafield.value : null;
+    parsedMetaValues = JSON.parse(metaValues);
+  }
+
+  const bundleProducts = [];
+
+  if (parsedMetaValues && Array.isArray(parsedMetaValues)) {
+    for (const id of parsedMetaValues) {
+      try {
+        const { product: bundleProduct } = await storefront.query(BUNDLE_PRODUCTS_QUERY, {
+          variables: { id, selectedOptions }
+        });
+        bundleProducts.push(bundleProduct);
+      } catch (error) {
+        console.error(`Error fetching bundle product for id ${id}:`, error);
+      }
+    }
+  }
+
   const firstVariant = product.variants.nodes[0];
   const firstVariantIsDefault = Boolean(
     firstVariant.selectedOptions.find(
@@ -69,7 +94,7 @@ export async function loader({params, request, context}) {
     variables: {handle},
   });
 
-  return defer({product, variants});
+  return defer({product, variants, bundleProducts});
 }
 
 /**
@@ -95,34 +120,50 @@ function redirectToFirstVariant({product, request}) {
   );
 }
 
+/**
+ * @param {LoaderFunctionArgs}
+ */
 export default function Product() {
   /** @type {LoaderReturnData} */
-  const {product, variants} = useLoaderData();
+  const {product, variants, bundleProducts} = useLoaderData();
   const {selectedVariant} = product;
-
-  const metaValues = product.metafield !== null ? product.metafield.value : null;
-  const parsedMetaValues = JSON.parse(metaValues);
 
   return (
     <div className="product">
       <ProductImage image={selectedVariant?.image} />
-      <ProductMain
-        selectedVariant={selectedVariant}
-        product={product}
-        variants={variants}
-      />
-      {product.metafield !== null ? (
-        <div className='bundle-product-container'>
-          <h1> Products Included</h1>
-          <div className='bundle-product-images'>
-            {product.images.edges.slice(1).map((image) => {
-              return (
-                <img key={image.node.id} src={image.node.src} />
-              )
-            })}
+      {bundleProducts ? (
+        <div className='byob-styled-container'>
+          <ProductMain
+            selectedVariant={selectedVariant}
+            product={product}
+            variants={variants}
+          />
+          <div className='product-selection'>
+            <ul className='products'>
+              {bundleProducts && bundleProducts.length > 0 && ( bundleProducts.map((product) => {
+                // console.log(product)
+                return (
+                  <li>
+                    <img src={product.images.edges[0].node.src} />
+                    <h4>{product.title}</h4>
+                    <ProductForm
+                      product={product}
+                      selectedVariant={selectedVariant}
+                      variants={[]}
+                    />
+                  </li>
+                )
+              }))}
+            </ul>
           </div>
         </div>
-      ) : null}
+      ) : (
+        <ProductMain
+          selectedVariant={selectedVariant}
+          product={product}
+          variants={variants}
+        />
+      )}
     </div>
   );
 }
@@ -202,19 +243,21 @@ function ProductMain({selectedVariant, product, variants}) {
 function ProductPrice({selectedVariant}) {
   return (
     <div className="product-price">
-      {selectedVariant?.compareAtPrice ? (
-        <>
-          <p>Sale</p>
-          <br />
-          <div className="product-price-on-sale">
-            {selectedVariant ? <Money data={selectedVariant.price} /> : null}
-            <s>
-              <Money data={selectedVariant.compareAtPrice} />
-            </s>
-          </div>
-        </>
+      {selectedVariant.product.title !== 'BUILD YOUR OWN BUNDLE' ? (
+        selectedVariant?.compareAtPrice ? (
+          <>
+            <p>Sale</p>
+            <br />
+            <div className="product-price-on-sale">
+              {selectedVariant ? <Money data={selectedVariant.price} /> : null}
+                <s><Money data={selectedVariant.compareAtPrice} /></s>
+            </div>
+          </>
+        ) : (
+          selectedVariant?.price && <Money data={selectedVariant?.price} />
+        )
       ) : (
-        selectedVariant?.price && <Money data={selectedVariant?.price} />
+        <h4>From $190.00</h4>
       )}
     </div>
   );
@@ -228,19 +271,40 @@ function ProductPrice({selectedVariant}) {
  * }}
  */
 function ProductForm({product, selectedVariant, variants}) {
-  const [quantity, setQuantity] = useState(1);
+  const location = useLocation();
+  const [quantity, setQuantity] = useState(location.pathname.includes('build-your-own-bundle') ? 0 : 1);
 
   const handleInputChange = (e) => {
     setQuantity(e.target.value)
   }
 
   const handleDecrease = () => {
-    setQuantity((prev) => (prev > 0 ? prev - 1 : 0));
+    if (location.pathname.includes('build-your-own-bundle')) {
+      if (totalQuantity.length != 0) {
+        setQuantity((prev) => (prev > 0 ? prev - 1 : 0));
+        totalQuantity.pop();
+      } else {
+        return;
+      }
+    } else {
+      setQuantity((prev) => (prev > 0 ? prev - 1 : 0));
+    }
   }
 
   const handleIncrease = () => {
-    setQuantity((prev) => prev + 1);
+    if (location.pathname.includes('build-your-own-bundle')) {
+      if (totalQuantity.length <= 3) {
+        setQuantity((prev) => prev + 1);
+        totalQuantity.push(product)
+      } else {
+        return;
+      }
+    } else {
+      setQuantity((prev) => prev + 1);
+    }
   }
+
+  // console.log(totalQuantity)
   
   return (
     <div className="product-form">
@@ -252,29 +316,46 @@ function ProductForm({product, selectedVariant, variants}) {
         {({option}) => <ProductOptions key={option.name} option={option} />}
       </VariantSelector>
       <br />
-      <div className='quantity-container'>
-        <button className='decrease' onClick={handleDecrease}> - </button>
-        <input minLength={0} maxLength={1} type='number' value={quantity} onChange={(e) => handleInputChange(e)}/>
-        <button className='increase' onClick={handleIncrease}> + </button>
-      </div>
-      <AddToCartButton
-        disabled={!selectedVariant || !selectedVariant.availableForSale}
-        onClick={() => {
-          window.location.href = window.location.href + '#cart-aside';
-        }}
-        lines={
-          selectedVariant
-            ? [
-                {
-                  merchandiseId: selectedVariant.id,
-                  quantity: parseInt(quantity),
-                },
-              ]
-            : []
-        }
-      >
-        {selectedVariant?.availableForSale ? 'Add to cart' : 'Sold out'}
-      </AddToCartButton>
+      {product.title !== 'BUILD YOUR OWN BUNDLE' && (
+        <div className='quantity-container'>
+          <button className='decrease' onClick={handleDecrease}> - </button>
+          <input minLength={0} maxLength={1} type='number' value={quantity} onChange={(e) => {location.pathname.includes('build-your-own-bundle') ? null : handleInputChange(e)}}/>
+          <button className='increase' onClick={handleIncrease}> + </button>
+        </div>
+      )}
+      {!location.pathname.includes('build-your-own-bundle') ? (
+        <AddToCartButton
+          disabled={!selectedVariant || !selectedVariant.availableForSale}
+          onClick={() => {
+            window.location.href = window.location.href + '#cart-aside';
+            // console.log(selectedVariant)
+          }}
+          lines={selectedVariant
+            ? [{
+                merchandiseId: selectedVariant.id,
+                quantity: parseInt(quantity),
+              }] : []}
+        >
+          {selectedVariant?.availableForSale ? 'Add to cart' : 'Sold out'}
+        </AddToCartButton>
+      ) : (
+        <AddToCartButton
+          disabled={!selectedVariant || !selectedVariant.availableForSale}
+          onClick={() => {
+            if (totalQuantity.length < 4) {
+              alert('you need to select 4 products to save on a bundle!');
+            } else {
+              window.location.href = window.location.href + '#cart-aside';
+            }
+          }}
+          lines={selectedVariant && totalQuantity.length > 3
+            ? totalQuantity.map(item => ({
+                merchandiseId: item.variants.nodes[0].id,
+              })) : []}
+        >
+          {selectedVariant?.availableForSale ? 'Add to cart' : 'Sold out'}
+        </AddToCartButton>
+      )}
     </div>
   );
 }
@@ -425,36 +506,6 @@ const PRODUCT_FRAGMENT = `#graphql
   ${PRODUCT_VARIANT_FRAGMENT}
 `;
 
-// const BUNDLE_PRODUCT_DATA = `
-//   query ProductData($country: CountryCode, $gid: ID) {
-//     product(id: $gid) {
-//       title
-//       description
-//       variants(first: 10) {
-//         edges {
-//           node {
-//             availableForSale
-//           }
-//         }
-//       }
-//       priceRange {
-//         minVariantPrice {
-//           amount
-//           currencyCode
-//         }
-//         maxVariantPrice {
-//           amount
-//           currencyCode
-//         }
-//       }
-//       image {
-//         url
-//         altText
-//       }
-//     }
-//   }
-// `;
-
 const PRODUCT_QUERY = `#graphql
   query Product(
     $country: CountryCode
@@ -463,6 +514,20 @@ const PRODUCT_QUERY = `#graphql
     $selectedOptions: [SelectedOptionInput!]!
   ) @inContext(country: $country, language: $language) {
     product(handle: $handle) {
+      ...Product
+    }
+  }
+  ${PRODUCT_FRAGMENT}
+`;
+
+const BUNDLE_PRODUCTS_QUERY = `#graphql
+  query BundleProduct(
+    $country: CountryCode
+    $id: ID!
+    $language: LanguageCode
+    $selectedOptions: [SelectedOptionInput!]!
+  ) @inContext(country: $country, language: $language) {
+    product(id: $id) {
       ...Product
     }
   }
