@@ -1,5 +1,6 @@
+import { useEffect, useRef } from 'react';
 import {CartForm, Image, Money} from '@shopify/hydrogen';
-import {Link} from '@remix-run/react';
+import {Link, useLocation} from '@remix-run/react';
 import {useVariantUrl} from '~/utils';
 
 /**
@@ -273,6 +274,15 @@ export function CartEmpty({hidden = false, layout = 'aside'}) {
  * }}
  */
 function CartDiscounts({discountCodes}) {
+  const url = useLocation();
+  const buttonRef = useRef(null);
+
+  useEffect(() => {
+    if (url.pathname.includes('build-your-own-bundle')) {
+      buttonRef.current.click();
+    }
+  }, []);
+
   const codes =
     discountCodes
       ?.filter((discount) => discount.applicable)
@@ -295,13 +305,23 @@ function CartDiscounts({discountCodes}) {
       </dl>
 
       {/* Show an input to apply a discount */}
-      <UpdateDiscountForm discountCodes={codes}>
-        <div>
-          <input type="text" name="discountCode" placeholder="Discount code" />
-          &nbsp;
-          <button type="submit">Apply</button>
-        </div>
-      </UpdateDiscountForm>
+      {!url.pathname.includes('build-your-own-bundle') ? (
+        <UpdateDiscountForm discountCodes={codes}>
+          <div>
+            <input type="text" name="discountCode" placeholder="Discount code" value={null}/>
+            &nbsp;
+            <button type="submit">Apply</button>
+          </div>
+        </UpdateDiscountForm>
+      ) : (
+        <UpdateDiscountForm discountCodes={codes}>
+          <div>
+            <input type="text" name="discountCode" placeholder="Discount code" value='hextest'/>
+            &nbsp;
+            <button ref={buttonRef} type="submit">Apply</button>
+          </div>
+        </UpdateDiscountForm>
+      )}
     </div>
   );
 }
