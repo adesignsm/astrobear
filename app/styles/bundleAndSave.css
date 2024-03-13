@@ -25,7 +25,7 @@
 #zerogravity-container, #skyrocket-container, #holiday-bundle-container, #build-your-own-container {
     max-width: 400px;
     box-sizing: content-box;
-    transform: scale(0.65);
+    transform: scale(0.67);
     margin-right: -2.5rem;
 }
 
