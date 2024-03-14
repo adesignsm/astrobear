@@ -27,6 +27,7 @@
     box-sizing: content-box;
     transform: scale(0.67);
     margin-right: -2.5rem;
+    min-width: 300px;
 }
 
 .bundle-container {
@@ -225,8 +226,14 @@
         text-align: center;
         width: 100%;
         margin-bottom: 1rem;
+        padding-left: 0;
     }
     .bundles-container {
         flex-wrap: wrap;
+    }
+
+    #zerogravity-container, #skyrocket-container, #holiday-bundle-container, #build-your-own-container {
+        margin-right: 0;
+        margin-bottom: 0;
     }
 }
