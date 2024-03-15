@@ -38,12 +38,168 @@ export default function Homepage() {
         <h1> Shop by Category </h1>
         <FeaturedCategories data={data.featuredCategories} />
       </section>
+      <div className='ticker-title'>
+        <div class="marquee">
+          <ul class="marquee__content">
+            <li>
+              <h1>NEW</h1>
+            </li>
+            <li></li>
+            <li>
+              <h1>DROPS</h1>
+            </li>
+            <li>
+              <h1>NEW</h1>
+            </li>
+            <li></li>
+            <li>
+              <h1>DROPS</h1>
+            </li>
+            <li>
+              <h1>NEW</h1>
+            </li>
+            <li></li>
+            <li>
+              <h1>DROPS</h1>
+            </li>
+            <li>
+              <h1>NEW</h1>
+            </li>
+            <li></li>
+            <li>
+              <h1>DROPS</h1>
+            </li>
+            <li>
+              <h1>NEW</h1>
+            </li>
+            <li></li>
+            <li>
+              <h1>DROPS</h1>
+            </li>
+          </ul>
+          <ul class="marquee__content" aria-hidden="true">
+            <li>
+              <h1>NEW</h1>
+            </li>
+            <li></li>
+            <li>
+              <h1>DROPS</h1>
+            </li>
+            <li>
+              <h1>NEW</h1>
+            </li>
+            <li></li>
+            <li>
+              <h1>DROPS</h1>
+            </li>
+            <li>
+              <h1>NEW</h1>
+            </li>
+            <li></li>
+            <li>
+              <h1>DROPS</h1>
+            </li>
+            <li>
+              <h1>NEW</h1>
+            </li>
+            <li></li>
+            <li>
+              <h1>DROPS</h1>
+            </li>
+            <li>
+              <h1>NEW</h1>
+            </li>
+            <li></li>
+            <li>
+              <h1>DROPS</h1>
+            </li>
+          </ul>
+        </div>
+      </div>
       <section className='recommended-products-section'>
         <RecommendedProducts products={data.recommendedProducts} />
         <div className='shop-all-button'>
-          <a href='/collections'>Shop All</a>
+          <a href='/collections'>Shop Everything</a>
         </div>
       </section>
+      <div className='ticker-title'>
+        <div class="marquee">
+          <ul class="marquee__content">
+            <li>
+              <h1>NEW</h1>
+            </li>
+            <li></li>
+            <li>
+              <h1>DROPS</h1>
+            </li>
+            <li>
+              <h1>NEW</h1>
+            </li>
+            <li></li>
+            <li>
+              <h1>DROPS</h1>
+            </li>
+            <li>
+              <h1>NEW</h1>
+            </li>
+            <li></li>
+            <li>
+              <h1>DROPS</h1>
+            </li>
+            <li>
+              <h1>NEW</h1>
+            </li>
+            <li></li>
+            <li>
+              <h1>DROPS</h1>
+            </li>
+            <li>
+              <h1>NEW</h1>
+            </li>
+            <li></li>
+            <li>
+              <h1>DROPS</h1>
+            </li>
+          </ul>
+          <ul class="marquee__content" aria-hidden="true">
+            <li>
+              <h1>NEW</h1>
+            </li>
+            <li></li>
+            <li>
+              <h1>DROPS</h1>
+            </li>
+            <li>
+              <h1>NEW</h1>
+            </li>
+            <li></li>
+            <li>
+              <h1>DROPS</h1>
+            </li>
+            <li>
+              <h1>NEW</h1>
+            </li>
+            <li></li>
+            <li>
+              <h1>DROPS</h1>
+            </li>
+            <li>
+              <h1>NEW</h1>
+            </li>
+            <li></li>
+            <li>
+              <h1>DROPS</h1>
+            </li>
+            <li>
+              <h1>NEW</h1>
+            </li>
+            <li></li>
+            <li>
+              <h1>DROPS</h1>
+            </li>
+          </ul>
+        </div>
+      </div>
       <section className='astrorewards-section'>
         <div className='column-one'>
           <h2>ASTROREWARDS</h2>
@@ -113,8 +269,8 @@ const FeaturedCategories = ({data}) => {
 
   useEffect(() => {
     const handleMouseMove = (e) => {
-      setXpos(e.clientX + 20);
-      setYpos(e.clientY + 600);
+      setXpos(e.clientX);
+      setYpos(e.clientY);
     }
 
     document.addEventListener('mousemove', handleMouseMove);

@@ -92,6 +92,7 @@
         align-items: center;
         justify-content: center;
         gap: 10px;
+        overflow: clip;
     }
 
     .category-section .category-item img {
@@ -101,6 +102,48 @@
 
     .category-section .category-item h4 {
         font-weight: lighter;
+    }
+}
+
+.ticker-title {
+    width: 100%;
+}
+
+.ticker-title li {
+    list-style: none;
+}
+
+.ticker-title h1 {
+    margin: 0;
+    font-size: 8rem;
+    color: transparent;
+    -webkit-text-fill-color: black;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: white;
+}
+
+.marquee {
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    gap: 1rem;
+}
+
+.marquee__content {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-around;
+    min-width: 100%;
+    gap: 3rem;
+    animation: scroll 20s linear infinite;
+}
+
+@keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% - 3rem));
     }
 }
 
@@ -114,9 +157,8 @@
     justify-content: center;
     padding: 2rem;
     .recommended-product {
-        border: 1px solid #fff;
+        border: .5px solid #fff;
         width: 100%;
-        height: 100%;
         padding: 1rem;
         transform: scale(1);
         text-align: center;
@@ -128,7 +170,7 @@
             gap: 5px;
             align-items: center;
             .tag {
-                background-color: transparent;
+                background-color: #e2f1c3;
                 padding: 0.5rem;
                 border-radius: 25px;
                 width: fit-content;
@@ -137,16 +179,20 @@
                 white-space: nowrap;
 
                 p {
-                    color: #fff;
+                    color: #000;
                     font-size: smaller;
-                    font-weight: bolder;
+                    font-weight: bold;
                     width: fit-content;
                 }
             }
         }
 
         .product-details {
-            padding: 0.5rem 1rem;
+            h4 {
+                font-size: x-large;
+                white-space: nowrap;
+
+            }
 
             button {
                 width: 100%;
@@ -195,7 +241,7 @@
     width: auto;
     background-color: #000;
     color: #fff;
-    border: 2px solid #fff;
+    border: 1px solid #fff;
     padding: 1rem 4rem;
     border-radius: 10px;
     font-size: x-large;
@@ -216,7 +262,7 @@
     background-image: url('https://cdn.shopify.com/s/files/1/0507/4780/1765/files/genericgradient_1.jpg?v=1675460933');
     background-size: cover;
     width: 100%;
-    padding: 10rem 2rem;
+    padding: 5rem 2rem;
     display: flex;
     justify-content: space-around;
 
@@ -427,6 +473,10 @@
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+
+    .astrorewards-section .column-one a {
+        width: 200px;
     }
 
     .about-section .row-one .column-one p {
