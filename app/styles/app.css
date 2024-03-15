@@ -2,7 +2,7 @@
 
 :root {
   --aside-width: 400px;
-  --cart-aside-summary-height-with-discount: 300px;
+  --cart-aside-summary-height-with-discount: 100px;
   --cart-aside-summary-height: 250px;
   --grid-item-width: 355px;
   --header-height: 64px;
@@ -90,6 +90,7 @@ aside p:last-child {
 
 aside li {
   margin-bottom: 0.125rem;
+  list-style: none;
 }
 
 .login {
@@ -430,7 +431,7 @@ aside li {
 
 .cart-line {
   display: flex;
-  padding: 0.75rem 0;
+  padding: 1rem 0;
 }
 
 .cart-line img {
@@ -446,13 +447,14 @@ aside li {
 .cart-details div:first-child {
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
 .cart-summary-aside {
   background: #000;
   border-top: 1px solid #e2f1c3;
   padding-top: 0.75rem;
-  position: absolute;
   /* width: calc(var(--aside-width)); */
   width: 100%;
   display: flex;

@@ -110,7 +110,7 @@ dl {
 }
 
 code {
-  background: #ddd;
+  background: transparent;
   border-radius: 4px;
   font-family: monospace;
   padding: 0.25rem;

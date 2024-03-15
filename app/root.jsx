@@ -27,6 +27,7 @@ import footerStyles from './styles/footer.css';
 import heroStyles from './styles/hero.css';
 import bundleAndSaveStyles from './styles/bundleAndSave.css';
 import byobStyles from './styles/byob.css';
+import cartStyles from './styles/cart.css';
 import {Layout} from '~/components/Layout';
 
 /**
@@ -63,6 +64,7 @@ export function links() {
     {rel: 'stylesheet', href: heroStyles},
     {rel: 'stylesheet', href: bundleAndSaveStyles},
     {rel: 'stylesheet', href: byobStyles},
+    {rel: 'stylesheet', href: cartStyles},
     {
       rel: 'preconnect',
       href: 'https://cdn.shopify.com',
