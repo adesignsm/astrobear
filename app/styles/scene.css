@@ -1,0 +1,36 @@
+.dot-container {
+    width: fit-content;
+    height: fit-content;
+    padding: 7px;
+    border: 1px solid #fff;
+    border-radius: 100%;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    animation: pulsate 2.5s infinite alternate;
+}
+
+.dot-container .inner-dot {
+    display: block;
+    width: 7px;
+    height: 7px;
+    border-radius: 100%;
+    background-color: #fff;
+}
+
+@keyframes pulsate {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.3);
+    }
+    100% {
+      transform: scale(1);
+    }
+}
+
+@media only screen and (min-width: 375px) and (max-width: 768px) {
+    .dot-container {
+        margin-left: 1rem;
+    }
+}

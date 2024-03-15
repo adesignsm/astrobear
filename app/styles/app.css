@@ -360,6 +360,7 @@ aside li {
   display: flex;
   grid-gap: 1rem;
   margin-left: auto;
+  padding-right: 3rem;
 }
 
 .header-menu-mobile .header-menu-item .dropdown-content {
