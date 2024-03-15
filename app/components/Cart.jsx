@@ -78,13 +78,13 @@ function CartLineItem({layout, line}) {
           alt={title}
           aspectRatio="1/1"
           data={image}
-          height={100}
+          // height={100}
           loading="lazy"
-          width={100}
+          // width={100}
         />
       )}
 
-      <div>
+      <div className='product-price-and-details'>
         <Link
           prefetch="intent"
           to={lineItemUrl}
@@ -109,8 +109,8 @@ function CartLineItem({layout, line}) {
             </li>
           ))}
         </ul>
-        <CartLineQuantity line={line} />
       </div>
+      <CartLineQuantity line={line} />
     </li>
   );
 }
@@ -187,28 +187,30 @@ function CartLineQuantity({line}) {
   return (
     <div className="cart-line-quantiy">
       <small>Quantity: {quantity} &nbsp;&nbsp;</small>
-      <CartLineUpdateButton lines={[{id: lineId, quantity: prevQuantity}]}>
-        <button
-          aria-label="Decrease quantity"
-          disabled={quantity <= 1}
-          name="decrease-quantity"
-          value={prevQuantity}
-        >
-          <span>&#8722; </span>
-        </button>
-      </CartLineUpdateButton>
-      &nbsp;
-      <CartLineUpdateButton lines={[{id: lineId, quantity: nextQuantity}]}>
-        <button
-          aria-label="Increase quantity"
-          name="increase-quantity"
-          value={nextQuantity}
-        >
-          <span>&#43;</span>
-        </button>
-      </CartLineUpdateButton>
-      &nbsp;
-      <CartLineRemoveButton lineIds={[lineId]} />
+      <div className='cart-buttons'>
+        <CartLineUpdateButton lines={[{id: lineId, quantity: prevQuantity}]}>
+          <button
+            aria-label="Decrease quantity"
+            disabled={quantity <= 1}
+            name="decrease-quantity"
+            value={prevQuantity}
+          >
+            <span>&#8722; </span>
+          </button>
+        </CartLineUpdateButton>
+        &nbsp;
+        <CartLineUpdateButton lines={[{id: lineId, quantity: nextQuantity}]}>
+          <button
+            aria-label="Increase quantity"
+            name="increase-quantity"
+            value={nextQuantity}
+          >
+            <span>&#43;</span>
+          </button>
+        </CartLineUpdateButton>
+        &nbsp;
+        <CartLineRemoveButton lineIds={[lineId]} />
+      </div>
     </div>
   );
 }

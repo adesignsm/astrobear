@@ -1,8 +1,16 @@
 .header {
     background-color: #000;
     backdrop-filter: blur(50px);
-    border-bottom: 1px solid #fff;
-    position: relative;
+    border-bottom: 1px solid #666;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: all .3s ease;
+}
+
+.header.scrolled {
+    top: -100px;
 }
 
 .header .header-logo {
@@ -62,6 +70,10 @@
     cursor: pointer;
 }
 
+.header-menu-item.custom {
+    word-spacing: -5px;
+}
+
 .header-ctas {
     a {
         color: #fff !important;
@@ -89,5 +101,9 @@
 @media only screen and (min-width: 375px) and (max-width: 768px) {
     .header-ctas .desktop-cta {
         display: none;
+    }
+
+    .header-ctas {
+        margin-left: 7rem;
     }
 }

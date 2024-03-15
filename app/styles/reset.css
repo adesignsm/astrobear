@@ -7,6 +7,13 @@ body, html {
   overflow-x: hidden;
 }
 
+@media only screen and (min-width: 375px) and (max-width: 768px) {
+  body, html {
+    overflow-x: hidden;
+    width: 100vw;
+  }
+}
+
 h1,
 h2,
 p {
@@ -110,7 +117,7 @@ dl {
 }
 
 code {
-  background: #ddd;
+  background: transparent;
   border-radius: 4px;
   font-family: monospace;
   padding: 0.25rem;

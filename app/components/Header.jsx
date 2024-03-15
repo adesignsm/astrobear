@@ -1,5 +1,5 @@
 import {Await, NavLink} from '@remix-run/react';
-import {Suspense, useState} from 'react';
+import {Suspense, useState, useEffect} from 'react';
 import {useRootLoaderData} from '~/root';
 
 /*icons */
@@ -12,9 +12,28 @@ import CART_ICON from '../assets/icon-cart.png';
  */
 export function Header({header, isLoggedIn, cart}) {
   const {shop, menu} = header;
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [isScrolledDown, setIsScrolledDown] = useState(false);
+
+  useEffect(() => {
+    setPrevScrollPos(window.pageYOffset);
+    
+    const handleScroll = () => {
+      const currentScrollPos = window.pageYOffset || document.documentElement.scrollTop;
+      setIsScrolledDown(currentScrollPos > prevScrollPos);
+      setPrevScrollPos(currentScrollPos);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('touchmove', handleScroll); // Add touch event listener
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('touchmove', handleScroll); // Remove touch event listener
+    };
+  }, [prevScrollPos]);
 
   return (
-    <header className="header">
+    <header className={`header ${isScrolledDown ? 'scrolled' : ''}`}>
       <NavLink className='header-logo' prefetch="intent" to="/" style={activeLinkStyle} end>
         <img src='https://cdn.shopify.com/s/files/1/0507/4780/1765/files/astrobear_wordmark_black_4x_1bc009de-3a24-4332-a956-aebe22803029.png?v=1666159004' />
       </NavLink>
@@ -93,7 +112,9 @@ export function HeaderMenu({menu, primaryDomainUrl, viewport, cart}) {
                           end
                           onClick={closeAside}
                           prefetch="intent"
-                          to={`/collections/${subItem.url.split('/collections/')[1]}`}
+                          to={
+                            subItem.title !== 'BUNDLE & SAVE' ? `/collections/${subItem.url.split('/collections/')[1]}` : subItem.url
+                          }
                         >
                           {subItem.title}
                         </NavLink>
@@ -104,9 +125,10 @@ export function HeaderMenu({menu, primaryDomainUrl, viewport, cart}) {
             );
           }
           if (item.type !== 'CATALOG') {
+            console.log(item)
             return (
               <NavLink
-                className="header-menu-item"
+                className={`header-menu-item ${item.title === 'BUNDLE & SAVE' ? 'custom' : ''}`}
                 end
                 key={item.id}
                 onClick={closeAside}
