@@ -33,3 +33,28 @@
 .product-selection .products .product-form .quantity-container button {
     cursor: pointer;
 }
+
+@media only screen and (min-width: 375px) and (max-width: 768px) {
+    .product .product-image {
+        height: auto !important;
+        width: auto !important;
+    }
+
+    .product .product-image img {
+        min-width: unset !important;
+        min-height: unset !important;
+    }
+
+    .product .byob-styled-container {
+        width: 95%;
+        margin: 0 auto;
+    }
+
+    .product .byob-styled-container .product-selection .products .product-form {
+        width: 200px;
+    }
+
+    .product .byob-styled-container .product-selection .products .product-form .quantity-container input {
+        width: 100px;
+    }
+}

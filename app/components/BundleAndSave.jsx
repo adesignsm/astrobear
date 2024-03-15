@@ -312,7 +312,7 @@ export const BundleAndSave = ({data}) => {
                     </p>
                     <div className='cta-container'>
                         <NavLink end prefetch="intent" to="/products/build-your-own-bundle">
-                            <button id='holiday-bundle-cta' className='cta-button'>Select Options</button>
+                            <button id='holiday-bundle-cta' className='cta-button'>Start Building</button>
                         </NavLink>
                     </div>
                 </div>
