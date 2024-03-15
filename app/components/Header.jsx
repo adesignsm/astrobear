@@ -125,7 +125,7 @@ export function HeaderMenu({menu, primaryDomainUrl, viewport, cart}) {
             );
           }
           if (item.type !== 'CATALOG') {
-            console.log(item)
+            // console.log(item)
             return (
               <NavLink
                 className={`header-menu-item ${item.title === 'BUNDLE & SAVE' ? 'custom' : ''}`}
