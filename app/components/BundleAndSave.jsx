@@ -30,7 +30,7 @@ export const Slider = ({ images, _index }) => {
         }
     }, [images])
 
-    console.log(imageSet.length)
+    // console.log(imageSet.length)
 
     return (
         <div className="slider">

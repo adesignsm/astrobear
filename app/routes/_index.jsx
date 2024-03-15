@@ -264,29 +264,27 @@ export default function Homepage() {
 }
 
 const FeaturedCategories = ({data}) => {
-  const [xPos, setXpos] = useState(0);
-  const [yPos, setYpos] = useState(0);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const handleMouseMove = (e) => {
-      setXpos(e.clientX);
-      setYpos(e.clientY);
-    }
+      setPosition({ x: e.clientX, y: e.clientY });
+    };
 
     document.addEventListener('mousemove', handleMouseMove);
 
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
     };
-  });
+  }, []);
 
   const handleMouseEnter = (e) => {
-    const descriptionCard = e.target.nextSibling;
+    const descriptionCard = e.target.nextSibling.nextSibling;
     descriptionCard.classList.add('show');
   }
 
   const handleMouseLeave = (e) => {
-    const descriptionCard = e.target.nextSibling;
+    const descriptionCard = e.target.nextSibling.nextSibling;
     descriptionCard.classList.remove('show');
   }
 
@@ -314,7 +312,7 @@ const FeaturedCategories = ({data}) => {
                 data-handle={cat.handle}
               />
               <h4>{cat.title} →</h4>
-              <div className='description-card' style={{top: `${yPos}px`, left: `${xPos}px`}}>
+              <div className='description-card' style={{top: position.y + 20, left: position.x + 10}}>
                 <div className='title-container'>
                   <h1>{cat.title}</h1>
                 </div>

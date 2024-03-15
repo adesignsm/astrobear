@@ -19,9 +19,4 @@
     .hero-section h1:nth-child(1) {
         transform: translateX(-55%) !important;
     }
-
-    .hero-section h1:nth-child(2) {
-        transform: translateX(-55%) !important;
-        min-width: 300px !important;
-    }
 }

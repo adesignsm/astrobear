@@ -27,7 +27,7 @@
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.2s ease-in-out;
-        position: absolute;
+        position: fixed;
         top: 0;
         left: 0;
         z-index: 2;
@@ -45,6 +45,7 @@
                 margin: 0.5rem 0;
                 font-size: large;
                 width: 100%;
+                text-align: left;
             }
         }
 

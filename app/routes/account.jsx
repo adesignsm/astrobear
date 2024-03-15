@@ -107,8 +107,6 @@ function AccountLayout({customer, children}) {
       : `Welcome to your account.`
     : 'Account Details';
 
-    console.log(customer)
-
   return (
     <div className="account">
       <h1>{heading}</h1>
