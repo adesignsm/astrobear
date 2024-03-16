@@ -93,7 +93,7 @@
         align-items: center;
         justify-content: center;
         gap: 10px;
-        overflow: clip;
+        overflow: visible;
     }
 
     .category-section .category-item img {
