@@ -16,7 +16,7 @@ export const Scene = () => {
 
     return (
         <>
-            <ScrollControls pages={3}>
+            <ScrollControls pages={3.25}>
                 <Scroll>
                     <Particles />
                     <Objects />

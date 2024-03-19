@@ -18,6 +18,11 @@ body,html {
   font-family: 'Roboto Mono', monospace;
   text-transform: uppercase;
   color: #fff;
+  scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
 }
 
 img {
@@ -91,6 +96,16 @@ aside p:last-child {
 aside li {
   margin-bottom: 0.125rem;
   list-style: none;
+}
+
+.home section:not(:first-child) {
+  background-color: #000;
+  position: relative;
+}
+
+.home .ticker-title {
+  background-color: #000;
+  position: relative;
 }
 
 .login {
