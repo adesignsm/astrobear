@@ -22,6 +22,7 @@ h1:first-child > img {
   margin-top: -12.5rem;
   margin-left: 5rem;
   mix-blend-mode: overlay;
+  animation: pulsateBears 4s infinite alternate;
 }
 
 h1:nth-child(2) > img {
@@ -29,6 +30,7 @@ h1:nth-child(2) > img {
   margin-top: -25rem;
   margin-left: -25rem;
   mix-blend-mode: overlay;
+  animation: pulsateBears 4s infinite alternate;
 }
 
 h1:nth-child(3) > img {
@@ -36,6 +38,7 @@ h1:nth-child(3) > img {
   margin-top: -25rem;
   margin-left: 10rem;
   mix-blend-mode: overlay;
+  animation: pulsateBears 4s infinite alternate;
 }
 
 @keyframes pulsate {
@@ -48,6 +51,18 @@ h1:nth-child(3) > img {
     100% {
       transform: scale(1);
     }
+}
+
+@keyframes pulsateBears {
+  0% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.8);
+  }
 }
 
 @media only screen and (min-width: 375px) and (max-width: 768px) {
