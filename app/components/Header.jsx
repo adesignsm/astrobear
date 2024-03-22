@@ -32,6 +32,14 @@ export function Header({header, isLoggedIn, cart}) {
     };
   }, [prevScrollPos]);
 
+  useEffect(() => {
+    if (isScrolledDown) {
+      document.querySelector('.hero-section').style.opacity = 0;
+    } else {
+      document.querySelector('.hero-section').style.opacity = 1;
+    }
+  }, [isScrolledDown]);
+
   return (
     <header className={`header ${isScrolledDown ? 'scrolled' : ''}`}>
       <NavLink className='header-logo' prefetch="intent" to="/" style={activeLinkStyle} end>

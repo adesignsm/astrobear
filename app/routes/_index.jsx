@@ -31,7 +31,7 @@ export default function Homepage() {
 
   return (
     <div className="home">
-      <section className='hero-section'>
+      <section className='hero-section' onScroll={(e) => handleScroll(e)}>
         <Hero />
       </section>
         <section className='featured-category-section'>
@@ -359,6 +359,14 @@ function FeaturedCollection({collection}) {
  * }}
  */
 export function RecommendedProducts({products}) {
+  const handleMouseEnter = (e) => {
+    console.log(e.target)
+  }
+
+  const handleMouseLeave = (e) => {
+    console.log(e.target)
+  }
+
   return (
     <div className="recommended-products">
       <Suspense fallback={<div>Loading...</div>}>
@@ -366,8 +374,18 @@ export function RecommendedProducts({products}) {
           {({products}) => (
             <div className="recommended-products-grid">
               {products.nodes.map((product) => (
-                <Link key={product.id} className="recommended-product" to={`/products/${product.handle}`}>
-                  <Image data={product.images.nodes[0]} />
+                <Link 
+                  key={product.id} 
+                  className="recommended-product" 
+                  to={`/products/${product.handle}`}
+                  onMouseEnter={(e) => handleMouseEnter(e)}
+                  onMouseLeave={(e) => handleMouseLeave(e)}
+                >
+                <img 
+                  src='https://cdn.shopify.com/s/files/1/0507/4780/1765/files/genericgradient_1.jpg?v=1675460933' 
+                  className={`gradient-bg`}
+                />
+                  <Image data={product.images.nodes[0]} style={{transform: 'scale(0.8', pointerEvents: 'none'}}/>
                   <div className='product-details'>
                     <h4>{product.title}</h4>
                     <div className='tags-container'>
