@@ -22,9 +22,6 @@ export const Objects = () => {
         <Item color="purple" position={[width / 4, -height * 2, 0]}>
           <coneGeometry args={[1.5, 2, 3]} />
         </Item>
-        <Item color="orange" position={[-width / 12, -height * 2.25, 0.5]}>
-          <coneGeometry args={[0.75, 2.5, 12]} />
-        </Item>
       </>
     )
 }
