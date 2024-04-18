@@ -150,9 +150,6 @@ export const BundleAndSave = ({data}) => {
                     <p>
                         The perfect indica nightcap designed to unwind your mind so you can embark on an elevated escape and ~FLOAT~
                         in a state of profound relaxation.
-                        <br />
-                        <br />
-                        Geared towards the cannabis curious and/or the discerning connoisseur.
                     </p>
                     <div className='cta-container'>
                         <NavLink end prefetch="intent" to="/products/zerogravity">
@@ -204,9 +201,6 @@ export const BundleAndSave = ({data}) => {
                     </div>
                     <p>
                         When there's a million things to knock out your to-do list, or you’re finally ready to start that creative project you’ve been planning to abort - Astrobear’s Sky Rocket bundle will get you ready for blast-off!
-                        <br />
-                        <br />
-                        Geared towards the cannabis curious and/or the discerning connoisseur.
                     </p>
                     <div className='cta-container'>
                         <NavLink end prefetch="intent" to="/products/skyrocket">
@@ -258,9 +252,6 @@ export const BundleAndSave = ({data}) => {
                     </div>
                     <p>
                         This fun hybrid bundle is ready for any holiday adventure with your Astrocrew. Whether enjoying a day in the snow, a cozy movie, or a tranquil evening by the fireplace - try this bundle to make your holidays even more jolly. 
-                        <br />
-                        <br />
-                        Geared towards the cannabis curious and/or the discerning connoisseur.
                     </p>
                     <div className='cta-container'>
                         <NavLink end prefetch="intent" to="/products/holiday">
@@ -310,7 +301,7 @@ export const BundleAndSave = ({data}) => {
                         Choose from Astrobear's selection of buds and craft a bundle unique to you and your crew. 
                         <br />
                     </p>
-                    <div className='cta-container'>
+                    <div className='cta-container start-building-button'>
                         <NavLink end prefetch="intent" to="/products/build-your-own-bundle">
                             <button id='holiday-bundle-cta' className='cta-button'>Start Building</button>
                         </NavLink>
