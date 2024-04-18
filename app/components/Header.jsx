@@ -16,10 +16,10 @@ export function Header({header, isLoggedIn, cart}) {
   const [isScrolledDown, setIsScrolledDown] = useState(false);
 
   useEffect(() => {
-    setPrevScrollPos(window.pageYOffset);
+    setPrevScrollPos(window.scrollY);
     
     const handleScroll = () => {
-      const currentScrollPos = window.pageYOffset || document.documentElement.scrollTop;
+      const currentScrollPos = window.scrollY || document.documentElement.scrollTop;
       setIsScrolledDown(currentScrollPos > prevScrollPos);
       setPrevScrollPos(currentScrollPos);
     };
@@ -33,6 +33,7 @@ export function Header({header, isLoggedIn, cart}) {
   }, [prevScrollPos]);
 
   useEffect(() => {
+    if (!document.querySelector('.hero-section')) return
     if (isScrolledDown) {
       document.querySelector('.hero-section').style.opacity = 0;
     } else {
