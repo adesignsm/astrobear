@@ -11,9 +11,9 @@ import {useVariantUrl} from '~/utils';
 /**
  * @type {MetaFunction<typeof loader>}
  */
-export const meta = ({data}) => {
-  return [{title: `Hydrogen | ${data?.collection.title ?? ''} Collection`}];
-};
+// export const meta = ({data}) => {
+//   return [{title: `Hydrogen | ${data?.collection.title ?? ''} Collection`}];
+// };
 
 /**
  * @param {LoaderFunctionArgs}
@@ -47,14 +47,14 @@ export default function Collection() {
 
   return (
     <div className="collection">
-      <div className='collections-details'>
+      <div className="collections-details">
         <h1>{collection.title}</h1>
         <p className="collection-description">{collection.description}</p>
       </div>
-      <div className='collection-buttons'>
-        {/* <button className='filter-button'> Filter </button> */}
-        <h2 className='collection-length'>
-          {collection.products.nodes.length} product{collection.products.nodes.length > 1 ? "'s" : ''}
+      <div className="collection-buttons">
+        <h2 className="collection-length">
+          {collection.products.nodes.length} product
+          {collection.products.nodes.length > 1 ? "'s" : ''}
         </h2>
       </div>
       <Pagination connection={collection.products}>
@@ -65,8 +65,8 @@ export default function Collection() {
             </PreviousLink>
             <ProductsGrid products={nodes} />
             <br />
-            <div className='load-more-container'>
-              <NextLink className='load-more'>
+            <div className="load-more-container">
+              <NextLink className="load-more">
                 {isLoading ? 'Loading...' : <span>Load more ↓</span>}
               </NextLink>
             </div>
@@ -114,28 +114,38 @@ function ProductItem({product, loading}) {
       to={variantUrl}
     >
       {product.featuredImage && (
-        <Image
-          alt={product.featuredImage.altText || product.title}
-          data={product.featuredImage}
-          loading={loading}
-        />
+        <div className="product-img-container">
+          <Image
+            alt={product.featuredImage.altText || product.title}
+            data={product.featuredImage}
+            loading={loading}
+          />
+        </div>
       )}
-      <div className='product-details'>
+      <div className="product-details">
         <h4>{product.title}</h4>
-        <medium className='money-tag'>
+        <medium className="money-tag">
           <Money data={product.priceRange.minVariantPrice} />
         </medium>
-        <div className='tags-container'>
+        <div className="tags-container">
           {product.collections.nodes.map((collection) => {
             return (
-              <div className='tag'>
+              <div className="tag">
                 <p>{collection.title}</p>
               </div>
-            )
+            );
           })}
         </div>
-        <Link key={product.id} className='button-link' to={`/products/${product.handle}`}>
-          <button>{product.variants.nodes.length > 1 ? 'Select Options' : 'Add To Cart'}</button>
+        <Link
+          key={product.id}
+          className="button-link"
+          to={`/products/${product.handle}`}
+        >
+          <button>
+            {product.variants.nodes.length > 1
+              ? 'Select Options'
+              : 'Add To Cart'}
+          </button>
         </Link>
       </div>
     </Link>

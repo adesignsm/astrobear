@@ -58,3 +58,13 @@
         width: 100px;
     }
 }
+
+.products {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 3rem;
+
+    @media only screen and (max-width: 1700px) {
+        display: block;
+    }
+}

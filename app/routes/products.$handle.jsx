@@ -129,8 +129,8 @@ export default function Product() {
   const {selectedVariant} = product;
 
   return (
-    <div className="product">
-      <ProductImage image={selectedVariant?.image} />
+    <div className={`product ${bundleProducts.length > 0 && "product-byob"} `}>
+      <ProductImage image={selectedVariant?.image} bundleProducts={bundleProducts} />{/*</div*/}
       {bundleProducts ? (
         <div className='byob-styled-container'>
           <ProductMain
@@ -141,7 +141,6 @@ export default function Product() {
           <div className='product-selection'>
             <ul className='products'>
               {bundleProducts && bundleProducts.length > 0 && ( bundleProducts.map((product) => {
-                // console.log(product)
                 return (
                   <li>
                     <img src={product.images.edges[0].node.src} />
@@ -172,6 +171,7 @@ export default function Product() {
  * @param {{image: ProductVariantFragment['image']}}
  */
 function ProductImage({image}) {
+
 
   if (!image) {
     return <div className="product-image" />;
