@@ -681,6 +681,12 @@ aside li {
   }
 }
 
+.product-byob {
+  @media (min-width: 45em) {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+
 .product h1 {
   margin-top: 0;
 }
