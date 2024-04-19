@@ -19,9 +19,9 @@ const totalQuantity = [];
 /**
  * @type {MetaFunction<typeof loader>}
  */
-// export const meta = ({data}) => {
-//   return [{title: `Astrobear | ${data?.product.title ?? ''}`}];
-// };
+export const meta = ({data}) => {
+  return [{title: `Astrobear | ${data?.product.title ?? ''}`}];
+};
 
 /**
  * @param {LoaderFunctionArgs}
