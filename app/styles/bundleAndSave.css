@@ -239,3 +239,8 @@
         margin-bottom: 0;
     }
 }
+
+.start-building-button {
+    position: relative;
+    top: -190px;
+}
