@@ -2,9 +2,9 @@
   display: flex;
   gap: 40px;
   padding: 5rem 2rem;
-  flex-direction: row-reverse;
+  flex-direction: row;
   align-items: center;
-  width: 100%;
+  max-width: 100%;
   overflow-x: scroll;
 
   .category-item a {

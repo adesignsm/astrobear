@@ -1,6 +1,6 @@
 import {defer} from '@shopify/remix-oxygen';
 import {Await, useLoaderData, Link} from '@remix-run/react';
-import {Suspense, useState, useEffect} from 'react';
+import {Suspense, useState, useEffect, useMemo} from 'react';
 import {Image, Money} from '@shopify/hydrogen';
 import {Hero} from '~/components/Hero';
 
@@ -266,7 +266,23 @@ export default function Homepage() {
 }
 
 const FeaturedCategories = ({data}) => {
+  const filterData = (array) => {
+    return array
+      .filter(
+        (cat) =>
+          (cat.title === 'EDIBLES' ||
+            cat.title === 'FLOWERS' ||
+            cat.title === 'MAGIC MUSHROOMS' ||
+            cat.title === 'PRE-ROLLS' ||
+            cat.title === 'Backwoods' ||
+            cat.title === 'Accessories') &&
+          cat,
+      )
+      .reverse();
+  };
+
   const [position, setPosition] = useState({x: 0, y: 0});
+  const filteredData = useMemo(() => filterData(data), [data]);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -296,41 +312,32 @@ const FeaturedCategories = ({data}) => {
 
   return (
     <div className="category-section">
-      {data.map((cat) => {
-        if (
-          cat.title === 'EDIBLES' ||
-          cat.title === 'FLOWERS' ||
-          cat.title === 'MAGIC MUSHROOMS' ||
-          cat.title === 'PRE-ROLLS' ||
-          cat.title === 'Backwoods' ||
-          cat.title === 'Accessories'
-        ) {
-          return (
-            <div className="category-item">
-              <img
-                src={cat.image.url}
-                onMouseOver={(e) => handleMouseEnter(e)}
-                onMouseLeave={(e) => handleMouseLeave(e)}
-                onClick={(e) => handleClick(e)}
-                data-handle={cat.handle}
-              />
-              <h4>{cat.title} →</h4>
-              <div
-                className="description-card"
-                style={{top: position.y + 20, left: position.x + 10}}
-              >
-                <div className="title-container">
-                  <h1>{cat.title}</h1>
-                </div>
-                {cat.description && (
-                  <div className="description-container">
-                    <p>{cat.description}</p>
-                  </div>
-                )}
+      {filteredData.map((cat) => {
+        return (
+          <div className="category-item">
+            <img
+              src={cat.image.url}
+              onMouseOver={(e) => handleMouseEnter(e)}
+              onMouseLeave={(e) => handleMouseLeave(e)}
+              onClick={(e) => handleClick(e)}
+              data-handle={cat.handle}
+            />
+            <h4>{cat.title} →</h4>
+            <div
+              className="description-card"
+              style={{top: position.y + 20, left: position.x + 10}}
+            >
+              <div className="title-container">
+                <h1>{cat.title}</h1>
               </div>
+              {cat.description && (
+                <div className="description-container">
+                  <p>{cat.description}</p>
+                </div>
+              )}
             </div>
-          );
-        }
+          </div>
+        );
       })}
     </div>
   );
