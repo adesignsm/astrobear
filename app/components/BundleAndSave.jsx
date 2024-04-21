@@ -101,7 +101,7 @@ export const BundleAndSave = ({data}) => {
     return (
         <>
             <div className='bundles-header'>
-                <h1>Bundle & Save</h1>
+                <h1 className='center-header'>Bundle & Save</h1>
                 <h2>Buds</h2>
             </div>
             <div className='bundles-container'>

@@ -243,4 +243,13 @@
 .start-building-button {
     position: relative;
     top: -190px;
+    @media (max-width: 768px) {
+      top: 0px;
+    }
+}
+
+.center-header {
+  @media (max-width: 767px) {
+    text-align: center !important;
+  }
 }
