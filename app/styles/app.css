@@ -331,10 +331,11 @@ aside li {
   z-index: 1;
   font-weight: normal;
   font-style: normal;
+  justify-content: space-between;
 }
 
 .header-menu-mobile-toggle {
-  @media (min-width: 48em) {
+  @media (min-width: 965px) {
     display: none;
   }
 }
@@ -352,7 +353,7 @@ aside li {
 .header-menu-desktop {
   display: none;
   grid-gap: 1rem;
-  @media (min-width: 45em) {
+  @media (min-width: 966px) {
     display: flex;
     grid-gap: 1rem;
     margin-left: 3rem;
