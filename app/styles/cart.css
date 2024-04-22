@@ -19,7 +19,7 @@
     }
 }
 
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 980px) {
     .cart-details ul {
         width: 100%;
     }
@@ -42,5 +42,22 @@
     .cart-line-quantiy .cart-buttons {
         display: flex;
         flex-direction: row;
+    }
+}
+
+    .cart-line-quantiy .cart-buttons {
+        display: flex;
+        flex-direction: row;
+    }
+
+.cart-img-cont {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    overflow: hidden;
+    border-radius: 4px;
+    img {
+        width: 100%;
+        height: auto;
     }
 }

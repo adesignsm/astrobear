@@ -8,13 +8,13 @@ import {useVariantUrl} from '~/utils';
  */
 export function CartMain({layout, cart}) {
   const linesCount = Boolean(cart?.lines?.nodes?.length || 0);
-  const withDiscount =
-    cart &&
-    Boolean(cart.discountCodes.filter((code) => code.applicable).length);
-  const className = `cart-main ${withDiscount ? 'with-discount' : ''}`;
+  // const withDiscount =
+  //   cart &&
+  //   Boolean(cart.discountCodes.filter((code) => code.applicable).length);
+  // const className = `cart-main ${withDiscount ? 'with-discount' : ''}`;
 
   return (
-    <div className={className}>
+    <div className='cart-main with-discount'>
       <CartEmpty hidden={linesCount} layout={layout} />
       <CartDetails cart={cart} layout={layout} />
     </div>
@@ -74,14 +74,14 @@ function CartLineItem({layout, line}) {
   return (
     <li key={id} className="cart-line">
       {image && (
-        <Image
-          alt={title}
-          aspectRatio="1/1"
-          data={image}
-          // height={100}
-          loading="lazy"
-          // width={100}
-        />
+        <div className='cart-img-cont'>
+          <Image
+            alt={title}
+            aspectRatio="1/1"
+            data={image}
+            loading="lazy"
+          />
+        </div>
       )}
 
       <div className='product-price-and-details'>
