@@ -116,6 +116,9 @@ aside li {
 }
 
 .login form {
+  @media (max-width: 636px) {
+    width: auto;
+  }
   width: 500px;
   display: flex;
   flex-direction: column;
