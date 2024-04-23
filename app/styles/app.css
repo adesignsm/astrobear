@@ -19,12 +19,12 @@ html {
   font-family: 'Roboto Mono', monospace;
   text-transform: uppercase;
   color: #fff;
-  /* scrollbar-width: none; */
+  scrollbar-width: none;
 }
 
-/* *::-webkit-scrollbar {
+*::-webkit-scrollbar {
   display: none;
-} */
+}
 
 img {
   border-radius: 4px;
