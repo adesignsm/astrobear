@@ -49,21 +49,34 @@ export async function action({request, context}) {
       'email',
       'password',
       'phone',
+      'acceptsMarketing',
     ];
+
+    let doesAcceptsMarketingExist = false;
     for (const [key, value] of form.entries()) {
       if (!validInputKeys.includes(key)) {
         continue;
       }
       if (key === 'acceptsMarketing') {
-        customer.acceptsMarketing = value === 'on';
+        doesAcceptsMarketingExist = true;
       }
       if (typeof value === 'string' && value.length) {
         customer[key] = value;
       }
     }
 
+    if (!doesAcceptsMarketingExist) {
+      customer.acceptsMarketing = false;
+    } else {
+      customer.acceptsMarketing = true;
+    }
+
     if (password) {
       customer.password = password;
+    }
+
+    if (!customer.phone.includes('+')) {
+      customer.phone = '+' + customer.phone;
     }
 
     // update customer and possibly password
@@ -91,7 +104,7 @@ export async function action({request, context}) {
     }
 
     return json(
-      {error: null, customer: updated.customerUpdate?.customer},
+      {error: null, customer: updated.customerUpdate?.customer, form},
       {
         headers: {
           'Set-Cookie': await session.commit(),
